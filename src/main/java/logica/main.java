@@ -3,32 +3,24 @@ package logica;
 /**
  * clase principal del programa que contiene el metodo para ejecutarlo
  */
+import javax.swing.*;
+import java.awt.*;
+
 public class main {
-    /**
-     * metodo principal que inicia el programa y que realiza distintas compras
-     */
-    public static void main(String[] args) {
-        Moneda m = new Moneda100();
-        Moneda m2 = new Moneda500();
-        Moneda m3 = new Moneda1000();
+    public static void main (String[] args) {
 
-        expendedor e = new expendedor(2);
+        JFrame frame = new JFrame();
+        PanelPrincipal p = new PanelPrincipal();
+        frame.setLayout(new BorderLayout());
 
-        try {
-            Comprador c = new Comprador(m3, ProductList.SNICKERS, e);
-            System.out.println(c.cuantoVuelto());
+        int alturaVentana = 300;
+        int anchoVentana = 300;
+        frame.setSize(anchoVentana,alturaVentana);
+        frame.add(p);
 
-            Comprador c2 = new Comprador(m3, ProductList.COCA, e);
-            System.out.println(c2.QueConsumiste());
-
-            Comprador c3 = new Comprador(m3, ProductList.COCA, e);
-            System.out.println(c3.QueConsumiste());
-        } catch (PagoInsuficienteException i) {
-            System.out.println(i);
-        } catch (PagoIncorrectoException i) {
-            System.out.println(i);
-        } catch (NoHayProductoException i) {
-            System.out.println(i);
-        }
+        frame.setResizable(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
     }
 }
+
