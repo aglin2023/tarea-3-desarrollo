@@ -1,9 +1,12 @@
 package logica;
 
+import java.awt.*;
+import java.util.ArrayList;
+
 /**
  * clase que representa el funcionamiento de un expendedor de productos
  */
-public class expendedor {
+public class Expendedor {
 
     /**
      * variable que representa el monto del vuelto de la compra del producto
@@ -35,21 +38,36 @@ public class expendedor {
      */
     private Deposito<Producto> super8;
 
+    private Producto productoComprado;
+    private Deposito<Moneda> monederoExpendedor;
+    private ArrayList<Deposito> depositos;
+
     /**
      * constructor de expendedor en el que se llena los depositos de cada producto con un int
      *
      * @param llenaDeposito valor que representa cuanto de cada producto se llena cada deposito
      */
-    public expendedor(int llenaDeposito) {
-
-
+    public Expendedor(int llenaDeposito) {
         monVu = new Deposito<Moneda>();
+        monederoExpendedor = new Deposito<Moneda>();
 
-        coca = new Deposito<Producto>();
-        sprite = new Deposito<Producto>();
-        fanta = new Deposito<Producto>();
-        snickers = new Deposito<Producto>();
-        super8 = new Deposito<Producto>();
+
+//        coca = new Deposito<Producto>();
+//        sprite = new Deposito<Producto>();
+//        fanta = new Deposito<Producto>();
+//        snickers = new Deposito<Producto>();
+//        super8 = new Deposito<Producto>();
+
+        for(int i = 0; i < 5; i++){
+            depositos.add(new Deposito());
+        }
+
+        coca = depositos.get(0);
+        sprite = depositos.get(1);
+        fanta = depositos.get(2);
+        snickers = depositos.get(3);
+        super8 = depositos.get(4);
+
 
         for (int i = 0; i < llenaDeposito; i++) {
             coca.addObject(new CocaCola());
@@ -65,15 +83,16 @@ public class expendedor {
      *
      * @param m la moneda ingresada
      * @param l el producto que se quiere comprar
-     * @return el producto que se pidió si la compra no tuvo problemas
      * @throws PagoInsuficienteException si el valor de la moneda no es suficiente para comprar el producto
      * @throws PagoIncorrectoException   si no se entrega una moneda o moneda es un null
      * @throws NoHayProductoException    si el producto que se quiere comprar, no está disponible
      */
-    public Producto comprar(Moneda m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
+    public void comprar(Moneda m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
         if (m == null) {
             throw new PagoIncorrectoException("No ingresaste moneda");
         }
+
+        monederoExpendedor.addObject(m);
         int vuelto = m.compareTo(l.getPrice());
 
 
@@ -111,7 +130,7 @@ public class expendedor {
             monVu.addObject(new Moneda100());
         }
 
-        return p;
+        productoComprado = p;
     }
 
     /**
@@ -122,4 +141,14 @@ public class expendedor {
     public Moneda getVuelto() {
         return monVu.getObject();
     }
+
+    public void paintComponent(Graphics g){
+        int x = 10;
+        int y = 10;
+        for(Deposito deposito : depositos) {
+            deposito.paintComponent(g,x,y);
+            y += 100;
+        }
+    }
+
 }

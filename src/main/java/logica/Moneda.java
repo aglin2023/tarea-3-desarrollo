@@ -1,5 +1,7 @@
 package logica;
 
+import java.awt.*;
+
 /**
  * clase de tipo abstracto que le otorga las caractaristicas a las diferentes monedas
  * en la que se utilizo la interfaz Comparable<moneda> para utilizar el compareTo
@@ -25,4 +27,5 @@ public abstract class Moneda implements Comparable<Moneda> {
     public int compareTo(Moneda v) {
         return this.getValor() - v.getValor();
     }
+    public abstract void paintComponent(Graphics g, int x, int y);
 }

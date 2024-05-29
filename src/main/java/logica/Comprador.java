@@ -24,16 +24,12 @@ public class Comprador {
      * @throws PagoInsuficienteException puede lanzar esta excepcion si se paga con una moneda de valor menor al producto
      * @throws NoHayProductoException    puede lanzar esta excepcion si no hay producto disponible en el deposito al comprar
      */
-    public Comprador(Moneda m, ProductList c, expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
+    public Comprador(Moneda m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
 
-        Producto productoComprado = e.comprar(m, c);
         Moneda aux = e.getVuelto();
         while (aux != null) {
             vueltoTotal += aux.getValor();
             aux = e.getVuelto();
-        }
-        if (productoComprado != null) {
-            sonido = productoComprado.consumido();
         }
     }
 

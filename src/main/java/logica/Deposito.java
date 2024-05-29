@@ -1,5 +1,6 @@
 package logica;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  *
  * @param <T> un objeto de cualquier tipo para almacenar
  */
-public class Deposito<T> {
+public class Deposito<T > {
 
     private ArrayList<T> arrayList;
 
@@ -36,5 +37,21 @@ public class Deposito<T> {
         if (arrayList.size() != 0)
             return arrayList.remove(0);
         return null;
+    }
+
+    public ArrayList<T> getArrayList() {
+        return arrayList;
+    }
+
+    public void paintComponent(Graphics g, int x, int y) {
+        int posicionY = y;
+        for (T objeto : arrayList) {
+            if (objeto instanceof Producto) {
+                ((Producto) objeto).paintComponent(g, x, posicionY);
+            } else if (objeto instanceof Moneda) {
+                ((Moneda) objeto).paintComponent(g, x, posicionY);
+            }
+            posicionY += 20;
+        }
     }
 }
