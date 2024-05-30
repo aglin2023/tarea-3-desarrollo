@@ -7,6 +7,7 @@ public abstract class Dulce extends Producto {
     /**
      * constructor de Dulce, no devuelve nada
      */
-    public Dulce() {
+    public Dulce(int serie) {
+        super(serie);
     }
 }
