@@ -27,5 +27,4 @@ public abstract class Moneda implements Comparable<Moneda> {
     public int compareTo(Moneda v) {
         return this.getValor() - v.getValor();
     }
-    public abstract void paintComponent(Graphics g, int x, int y);
 }

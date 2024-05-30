@@ -43,15 +43,4 @@ public class Deposito<T > {
         return arrayList;
     }
 
-    public void paintComponent(Graphics g, int x, int y) {
-        int posicionY = y;
-        for (T objeto : arrayList) {
-            if (objeto instanceof Producto) {
-                ((Producto) objeto).paintComponent(g, x, posicionY);
-            } else if (objeto instanceof Moneda) {
-                ((Moneda) objeto).paintComponent(g, x, posicionY);
-            }
-            posicionY += 20;
-        }
-    }
 }
