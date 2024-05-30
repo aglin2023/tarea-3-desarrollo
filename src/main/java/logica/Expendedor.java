@@ -1,8 +1,5 @@
 package logica;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 /**
  * clase que representa el funcionamiento de un expendedor de productos
  */
@@ -38,9 +35,19 @@ public class Expendedor {
      */
     private Deposito<Producto> super8;
 
-    private Producto productoComprado;
+    /**
+     * Deposito unitario
+     */
+    private Deposito depositoUnitarioProductoComprado;
+    /**
+     * Deposito de monedas
+     */
     private Deposito<Moneda> monederoExpendedor;
-    private ArrayList<Deposito> depositos;
+    /**
+     * Producto comprado
+     */
+    private Producto productoComprado;
+    private static int llenaDeposito;
 
     /**
      * constructor de expendedor en el que se llena los depositos de cada producto con un int
@@ -50,31 +57,31 @@ public class Expendedor {
     public Expendedor(int llenaDeposito) {
         monVu = new Deposito<Moneda>();
         monederoExpendedor = new Deposito<Moneda>();
+        this.depositoUnitarioProductoComprado = new Deposito<Producto>();
+        this.llenaDeposito = llenaDeposito;
 
-
-//        coca = new Deposito<Producto>();
-//        sprite = new Deposito<Producto>();
-//        fanta = new Deposito<Producto>();
-//        snickers = new Deposito<Producto>();
-//        super8 = new Deposito<Producto>();
-
-        for(int i = 0; i < 5; i++){
-            depositos.add(new Deposito());
-        }
-
-        coca = depositos.get(0);
-        sprite = depositos.get(1);
-        fanta = depositos.get(2);
-        snickers = depositos.get(3);
-        super8 = depositos.get(4);
-
+        coca = new Deposito<>();
+        sprite = new Deposito<>();
+        fanta = new Deposito<>();
+        snickers = new Deposito<>();
+        super8 = new Deposito<>();
 
         for (int i = 0; i < llenaDeposito; i++) {
-            coca.addObject(new CocaCola());
-            sprite.addObject(new Sprite());
-            fanta.addObject(new Fanta());
-            snickers.addObject(new Snickers());
-            super8.addObject(new Super8());
+            coca.addObject(new CocaCola(ProductList.COCA.serie));
+            sprite.addObject(new Sprite(ProductList.SPRITE.serie));
+            fanta.addObject(new Fanta(ProductList.FANTA.serie));
+            snickers.addObject(new Snickers(ProductList.SNICKERS.serie));
+            super8.addObject(new Super8(ProductList.SUPER8.serie));
+        }
+    }
+
+    public void rellenarDepositos() {
+        for (int i = 0; i < llenaDeposito; i++) {
+            coca.addObject(new CocaCola(ProductList.COCA.serie));
+            sprite.addObject(new Sprite(ProductList.SPRITE.serie));
+            fanta.addObject(new Fanta(ProductList.FANTA.serie));
+            snickers.addObject(new Snickers(ProductList.SNICKERS.serie));
+            super8.addObject(new Super8(ProductList.SUPER8.serie));
         }
     }
 
@@ -87,7 +94,7 @@ public class Expendedor {
      * @throws PagoIncorrectoException   si no se entrega una moneda o moneda es un null
      * @throws NoHayProductoException    si el producto que se quiere comprar, no está disponible
      */
-    public void comprar(Moneda m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
+    public void comprarProducto(Moneda m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
         if (m == null) {
             throw new PagoIncorrectoException("No ingresaste moneda");
         }
@@ -140,15 +147,6 @@ public class Expendedor {
      */
     public Moneda getVuelto() {
         return monVu.getObject();
-    }
-
-    public void paintComponent(Graphics g){
-        int x = 10;
-        int y = 10;
-        for(Deposito deposito : depositos) {
-            deposito.paintComponent(g,x,y);
-            y += 100;
-        }
     }
 
 }
