@@ -7,7 +7,8 @@ public class Snickers extends Dulce {
     /**
      * constructor de Snickers, no devuelve nada
      */
-    public Snickers() {
+    public Snickers(int serie) {
+        super(serie);
     }
 
     /**
@@ -15,5 +16,15 @@ public class Snickers extends Dulce {
      */
     public String consumido() {
         return "snickers";
+    }
+
+
+    public static int getPrice() {
+        return ProductList.SNICKERS.getPrice().getValor();
+    }
+
+    @Override
+    public int getSerie() {
+        return ProductList.SNICKERS.serie;
     }
 }

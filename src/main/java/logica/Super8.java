@@ -7,7 +7,8 @@ public class Super8 extends Dulce {
     /**
      * constructor de Super8, no devuelve nada
      */
-    public Super8() {
+    public Super8(int serie) {
+        super(serie);
     }
 
     /**
@@ -15,5 +16,15 @@ public class Super8 extends Dulce {
      */
     public String consumido() {
         return "super 8";
+    }
+
+
+    public static int getPrice() {
+        return ProductList.SUPER8.getPrice().getValor();
+    }
+
+    @Override
+    public int getSerie() {
+        return ProductList.SUPER8.serie;
     }
 }
