@@ -70,11 +70,11 @@ public class Expendedor {
 
 
         for (int i = 0; i < llenaDeposito; i++) {
-            coca.addObject(new CocaCola());
-            sprite.addObject(new Sprite());
-            fanta.addObject(new Fanta());
-            snickers.addObject(new Snickers());
-            super8.addObject(new Super8());
+            coca.addObject(new CocaCola(i));
+            sprite.addObject(new Sprite(i));
+            fanta.addObject(new Fanta(i));
+            snickers.addObject(new Snickers(i));
+            super8.addObject(new Super8(i));
         }
     }
 

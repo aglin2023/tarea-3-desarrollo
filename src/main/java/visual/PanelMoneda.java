@@ -26,6 +26,7 @@ public class PanelMoneda extends JFrame {
         JButton boton100 = new JButton("Moneda de 100");
         JButton boton500 = new JButton("Moneda de 500");
         JButton boton1000 = new JButton("Moneda de 1000");
+        JButton botonborrar= new JButton("quitar monedas");
 
         boton100.addActionListener(new ActionListener() {
             @Override
@@ -48,17 +49,34 @@ public class PanelMoneda extends JFrame {
             }
         });
 
+        botonborrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                borrarTotal();
+
+            }
+        });
+
         add(boton100);
         add(boton500);
         add(boton1000);
+        add(botonborrar);
         add(valorLabel);
 
         setVisible(true);
     }
 
+    private void borrarTotal(){
+        totalValor= 0;
+        valorLabel.setText("Valor total: " + totalValor);
+    }
+
     private void ingresarMoneda(Moneda moneda) {
         totalValor += moneda.getValor();
         valorLabel.setText("Valor total: " + totalValor);
+    }
+    public void paintComponent(Graphics g){
+        super.paintComponents(g);
     }
 
 }

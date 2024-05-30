@@ -6,6 +6,6 @@ public abstract class Bebida extends Producto {
     /**
      * constructor de bebida, no devuelve nada
      */
-    public Bebida() {
-    }
+    public Bebida(int h) {
+    super(h);}
 }
