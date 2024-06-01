@@ -1,5 +1,4 @@
 package visual;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -8,18 +7,19 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.util.*;
 
-public class PanelDigitos extends JPanel implements ActionListener{
+public class PanelDigitos extends JPanel{
 
     private ArrayList<JButton> botones;
+    private LogicaDigitos logica;
 
     public PanelDigitos(){
 	this.setLayout(null);
 
-	JLabel l = new JLabel("Text de Prueba",JLabel.LEFT);
-	l.setText("Ejemplo Text");
-	l.setBounds(0,0,100,10);
+	JLabel l = new JLabel("",JLabel.LEFT);
+	l.setBounds(0,0,300,20);
 	this.add(l);
 
+	logica = new LogicaDigitos(l);
 	CreateBotones(0,40,12);
     }
     
@@ -52,7 +52,7 @@ public class PanelDigitos extends JPanel implements ActionListener{
 
 	    b.setBounds(x+(xGridCount)*width,y+(-yGridCount)*height +height*(size/3-1),width,height);
 	    b.setActionCommand(""+i);
-	    b.addActionListener(this);
+	    b.addActionListener(logica);
 
 	    if(i % 3 ==  0){
 		yGridCount++;
@@ -70,13 +70,5 @@ public class PanelDigitos extends JPanel implements ActionListener{
 	
     public void paintComponent(Graphics g){
 	super.paintComponent(g);
-    }
-    public void actionPerformed(ActionEvent e){
-	for(int i = 0; i < 10; i++){
-	    String aux = i + "";
-	    if(aux.equals(e.getActionCommand())){
-		System.out.print(i);
-	    }
-	}
     }
 }
