@@ -66,21 +66,20 @@ public class LogicaDigitos implements ActionListener{
     }
 
     public void OkButton(){
-	for (int i = 0;i< digits_pantalla.length; i++) {
-	    if(digits_pantalla[i].equals("")){
+		for (int i = 0;i < digits_pantalla.length; i++) {
+			if(digits_pantalla[i].equals("")){
+				pantalla.setText("ERROR... REINGRESAR:");
+				ResetPantalla();
+				return;
+			}
+		}
 
-		pantalla.setText("ERROR... REINGRESAR:");
-		ResetPantalla();
-		break;
-	    }
+			/*
+			   TRY HACIA EXPENDEDOR
+			*/
 
-	    /*
-	       TRY HACIA EXPENDEDOR
-	    */
-	    
-	    procesandoCompra = true;
-	    pantalla.setText("SOLICITANDO...");
-	}
+			procesandoCompra = true;
+			pantalla.setText("SOLICITANDO...");
     }
 
     public void ResetPantalla(){

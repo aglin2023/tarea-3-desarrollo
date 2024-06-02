@@ -1,4 +1,5 @@
 package visual;
+import logica.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -13,59 +14,59 @@ public class PanelDigitos extends JPanel{
     private LogicaDigitos logica;
 
     public PanelDigitos(){
-	this.setLayout(null);
+		this.setLayout(null);
 
-	JLabel l = new JLabel("",JLabel.LEFT);
-	l.setBounds(0,0,300,20);
-	this.add(l);
+		JLabel l = new JLabel("",JLabel.LEFT);
+		l.setBounds(0,0,300,20);
+		this.add(l);
 
-	logica = new LogicaDigitos(l);
-	CreateBotones(0,40,12);
+		logica = new LogicaDigitos(l);
+		CreateBotones(0,40,12);
     }
     
     public void CreateBotones(int x, int y,int size){
-	botones = new ArrayList<JButton>();
+		botones = new ArrayList<JButton>();
 
-	int yGridCount = 0;
-	int xGridCount = 0;
-	for(int i = 0; i < size ; i++){
+		int yGridCount = 0;
+		int xGridCount = 0;
+		for(int i = 0; i < size ; i++){
 
-	    String ButtonLabel = ""+i;
+			String ButtonLabel = ""+i;
 
-	    int width = 55;
-	    int height = 55;
+			int width = 55;
+			int height = 55;
 
-	    if(i == 0)
-		xGridCount = 1;
-	    if(i == 10){
-		xGridCount = 0;
-		yGridCount = 0;
-		ButtonLabel = "<-";
-	    }
-	    if(i == 11){
-		xGridCount = 2;
-		yGridCount = 0;
-		ButtonLabel = "OK";
-	    }
+			if(i == 0)
+				xGridCount = 1;
+			if(i == 10){
+				xGridCount = 0;
+				yGridCount = 0;
+				ButtonLabel = "<-";
+			}
+			if(i == 11){
+				xGridCount = 2;
+				yGridCount = 0;
+				ButtonLabel = "OK";
+			}
 
-	    JButton b = new JButton(ButtonLabel);
+			JButton b = new JButton(ButtonLabel);
 
-	    b.setBounds(x+(xGridCount)*width,y+(-yGridCount)*height +height*(size/3-1),width,height);
-	    b.setActionCommand(""+i);
-	    b.addActionListener(logica);
+			b.setBounds(x+(xGridCount)*width,y+(-yGridCount)*height +height*(size/3-1),width,height);
+			b.setActionCommand(""+i);
+			b.addActionListener(logica);
 
-	    if(i % 3 ==  0){
-		yGridCount++;
-		xGridCount = 0;
-	    }
-	    else
-		xGridCount++;
+			if(i % 3 ==  0){
+				yGridCount++;
+				xGridCount = 0;
+			}
+			else
+				xGridCount++;
 
-	    botones.add(b);
+			botones.add(b);
 
 
-	    this.add(b);
-	}
+			this.add(b);
+		}
     }
 	
     public void paintComponent(Graphics g){
