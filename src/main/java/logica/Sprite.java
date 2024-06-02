@@ -7,7 +7,8 @@ public class Sprite extends Bebida {
     /**
      * constructor de sprite, no devuelve nada
      */
-    public Sprite() {
+    public Sprite(int serie) {
+        super(serie);
     }
 
     /**
@@ -15,5 +16,15 @@ public class Sprite extends Bebida {
      */
     public String consumido() {
         return "sprite";
+    }
+
+
+    public static int getPrice() {
+        return ProductList.SPRITE.getPrice().getValor();
+    }
+
+    @Override
+    public int getSerie() {
+        return ProductList.SPRITE.serie;
     }
 }

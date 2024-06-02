@@ -1,8 +1,5 @@
 package logica;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 /**
  * clase que representa el funcionamiento de un expendedor de productos
  */
@@ -38,9 +35,19 @@ public class Expendedor {
      */
     private Deposito<Producto> super8;
 
-    private Producto productoComprado;
+    /**
+     * Deposito unitario
+     */
+    private Deposito depositoUnitarioProductoComprado;
+    /**
+     * Deposito de monedas
+     */
     private Deposito<Moneda> monederoExpendedor;
-    private ArrayList<Deposito> depositos;
+    /**
+     * Producto comprado
+     */
+    private Producto productoComprado;
+    private static int llenaDeposito;
 
     /**
      * constructor de expendedor en el que se llena los depositos de cada producto con un int
@@ -50,33 +57,101 @@ public class Expendedor {
     public Expendedor(int llenaDeposito) {
         monVu = new Deposito<Moneda>();
         monederoExpendedor = new Deposito<Moneda>();
+        this.depositoUnitarioProductoComprado = new Deposito<Producto>();
+        this.llenaDeposito = llenaDeposito;
 
+        //prueba
+        productoComprado = new CocaCola(106);
+        depositoUnitarioProductoComprado.addObject(productoComprado);
 
-//        coca = new Deposito<Producto>();
-//        sprite = new Deposito<Producto>();
-//        fanta = new Deposito<Producto>();
-//        snickers = new Deposito<Producto>();
-//        super8 = new Deposito<Producto>();
-
-        for(int i = 0; i < 5; i++){
-            depositos.add(new Deposito());
-        }
-
-        coca = depositos.get(0);
-        sprite = depositos.get(1);
-        fanta = depositos.get(2);
-        snickers = depositos.get(3);
-        super8 = depositos.get(4);
-
+        coca = new Deposito<>();
+        sprite = new Deposito<>();
+        fanta = new Deposito<>();
+        snickers = new Deposito<>();
+        super8 = new Deposito<>();
 
         for (int i = 0; i < llenaDeposito; i++) {
-            coca.addObject(new CocaCola());
-            sprite.addObject(new Sprite());
-            fanta.addObject(new Fanta());
-            snickers.addObject(new Snickers());
-            super8.addObject(new Super8());
+            coca.addObject(new CocaCola(100 + i));
+            sprite.addObject(new Sprite(200 + i));
+            fanta.addObject(new Fanta(300 + i));
+            // snickers.addObject(new Snickers(400 + i));
+            super8.addObject(new Super8(500 + i));
+        }
+
+    }
+
+    public int getLlenaDeposito(){
+        return llenaDeposito;
+    }
+
+    public void rellenarDepositos() {
+        if(coca.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                coca.addObject(new CocaCola(ProductList.COCA.serie));
+            }
+        }
+        if(sprite.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                sprite.addObject(new Sprite(ProductList.SPRITE.serie));
+            }
+        }
+        if(fanta.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                fanta.addObject(new Fanta(ProductList.SPRITE.serie));
+            }
+        }
+        if(super8.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                super8.addObject(new Super8(ProductList.SUPER8.serie));
+            }
+        }
+        if(snickers.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                snickers.addObject(new Snickers(ProductList.SNICKERS.serie));
+            }
+        }
+        if(sprite.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                sprite.addObject(new Snickers(ProductList.SNICKERS.serie));
+            }
         }
     }
+    public Deposito<Producto> getDeposito(ProductList producto) {
+        switch (producto) {
+            case COCA:
+                return coca;
+            case SPRITE:
+                return sprite;
+            case FANTA:
+                return fanta;
+            case SNICKERS:
+                return snickers;
+            case SUPER8:
+                return super8;
+            default:
+                throw new IllegalArgumentException("Producto no válido");
+        }
+    }
+    public int getSerieProducto(ProductList producto) {
+        switch (producto) {
+            case COCA:
+                return ProductList.COCA.getSerie();
+            case SPRITE:
+                return ProductList.SPRITE.getSerie();
+            case FANTA:
+                return ProductList.FANTA.getSerie();
+            case SNICKERS:
+                return ProductList.SNICKERS.getSerie();
+            case SUPER8:
+                return ProductList.SUPER8.getSerie();
+            default:
+                return -1;
+        }
+    }
+    public Deposito getDepositoUnitarioProductoComprado(){
+        return depositoUnitarioProductoComprado;
+    }
+
 
     /**
      * metodo que permite la compra de un producto con una moneda
@@ -87,7 +162,7 @@ public class Expendedor {
      * @throws PagoIncorrectoException   si no se entrega una moneda o moneda es un null
      * @throws NoHayProductoException    si el producto que se quiere comprar, no está disponible
      */
-    public void comprar(Moneda m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
+    public void comprarProducto(Moneda m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
         if (m == null) {
             throw new PagoIncorrectoException("No ingresaste moneda");
         }
@@ -102,6 +177,7 @@ public class Expendedor {
         }
 
         Producto p = null;
+
 
         if (l.equals(ProductList.COCA)) {
             p = coca.getObject();
@@ -131,6 +207,8 @@ public class Expendedor {
         }
 
         productoComprado = p;
+        depositoUnitarioProductoComprado.addObject(productoComprado);
+
     }
 
     /**
@@ -142,13 +220,7 @@ public class Expendedor {
         return monVu.getObject();
     }
 
-    public void paintComponent(Graphics g){
-        int x = 10;
-        int y = 10;
-        for(Deposito deposito : depositos) {
-            deposito.paintComponent(g,x,y);
-            y += 100;
-        }
+    public void setProductoCompradoNULL() {
+        productoComprado = null;
     }
-
 }

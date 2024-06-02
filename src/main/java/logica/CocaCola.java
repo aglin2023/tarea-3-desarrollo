@@ -7,7 +7,8 @@ public class CocaCola extends Bebida {
     /**
      * constructor de CocaCola, no devuelve nada
      */
-    public CocaCola() {
+    public CocaCola(int serie) {
+        super(serie);
     }
 
     /**
@@ -15,5 +16,15 @@ public class CocaCola extends Bebida {
      */
     public String consumido() {
         return "CocaCola";
+    }
+
+
+    public static int getPrice() {
+        return ProductList.COCA.getPrice().getValor();
+    }
+
+    @Override
+    public int getSerie() {
+        return ProductList.COCA.serie;
     }
 }

@@ -8,7 +8,8 @@ public class Fanta extends Bebida {
     /**
      * constructor de Fanta, no devuelve nada
      */
-    public Fanta() {
+    public Fanta(int serie) {
+        super(serie);
     }
 
     /**
@@ -16,5 +17,15 @@ public class Fanta extends Bebida {
      */
     public String consumido() {
         return "fanta";
+    }
+
+
+    public static int getPrice() {
+        return ProductList.FANTA.getPrice().getValor();
+    }
+
+    @Override
+    public int getSerie() {
+        return ProductList.FANTA.serie;
     }
 }

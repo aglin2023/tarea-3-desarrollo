@@ -10,13 +10,13 @@ import java.util.ArrayList;
  */
 public class Deposito<T > {
 
-    private ArrayList<T> arrayList;
+    private ArrayList<T> deposito;
 
     /**
      * constructor que inicia un nuevo deposito
      */
     public Deposito() {
-        arrayList = new ArrayList<T>();
+        deposito = new ArrayList<T>();
     }
 
     /**
@@ -25,7 +25,7 @@ public class Deposito<T > {
      * @param producto el objeto que se va a almacenar dentro de un deposito
      */
     public void addObject(T producto) {
-        arrayList.add(producto);
+        deposito.add(producto);
     }
 
     /**
@@ -34,24 +34,16 @@ public class Deposito<T > {
      * @return el objeto que está primero actualmente en el deposito, si está vacio, devuelve null
      */
     public T getObject() {
-        if (arrayList.size() != 0)
-            return arrayList.remove(0);
+        if (deposito.size() != 0)
+            return deposito.remove(0);
         return null;
     }
 
     public ArrayList<T> getArrayList() {
-        return arrayList;
+        return deposito;
     }
 
-    public void paintComponent(Graphics g, int x, int y) {
-        int posicionY = y;
-        for (T objeto : arrayList) {
-            if (objeto instanceof Producto) {
-                ((Producto) objeto).paintComponent(g, x, posicionY);
-            } else if (objeto instanceof Moneda) {
-                ((Moneda) objeto).paintComponent(g, x, posicionY);
-            }
-            posicionY += 20;
-        }
+    public boolean tieneProductos() {
+        return !deposito.isEmpty();
     }
 }
