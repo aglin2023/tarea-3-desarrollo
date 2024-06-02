@@ -60,6 +60,10 @@ public class Expendedor {
         this.depositoUnitarioProductoComprado = new Deposito<Producto>();
         this.llenaDeposito = llenaDeposito;
 
+        //prueba
+        productoComprado = new CocaCola(106);
+        depositoUnitarioProductoComprado.addObject(productoComprado);
+
         coca = new Deposito<>();
         sprite = new Deposito<>();
         fanta = new Deposito<>();
@@ -67,23 +71,87 @@ public class Expendedor {
         super8 = new Deposito<>();
 
         for (int i = 0; i < llenaDeposito; i++) {
-            coca.addObject(new CocaCola(ProductList.COCA.serie));
-            sprite.addObject(new Sprite(ProductList.SPRITE.serie));
-            fanta.addObject(new Fanta(ProductList.FANTA.serie));
-            snickers.addObject(new Snickers(ProductList.SNICKERS.serie));
-            super8.addObject(new Super8(ProductList.SUPER8.serie));
+            coca.addObject(new CocaCola(100 + i));
+            sprite.addObject(new Sprite(200 + i));
+            fanta.addObject(new Fanta(300 + i));
+            // snickers.addObject(new Snickers(400 + i));
+            super8.addObject(new Super8(500 + i));
         }
+
+    }
+
+    public int getLlenaDeposito(){
+        return llenaDeposito;
     }
 
     public void rellenarDepositos() {
-        for (int i = 0; i < llenaDeposito; i++) {
-            coca.addObject(new CocaCola(ProductList.COCA.serie));
-            sprite.addObject(new Sprite(ProductList.SPRITE.serie));
-            fanta.addObject(new Fanta(ProductList.FANTA.serie));
-            snickers.addObject(new Snickers(ProductList.SNICKERS.serie));
-            super8.addObject(new Super8(ProductList.SUPER8.serie));
+        if(coca.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                coca.addObject(new CocaCola(ProductList.COCA.serie));
+            }
+        }
+        if(sprite.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                sprite.addObject(new Sprite(ProductList.SPRITE.serie));
+            }
+        }
+        if(fanta.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                fanta.addObject(new Fanta(ProductList.SPRITE.serie));
+            }
+        }
+        if(super8.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                super8.addObject(new Super8(ProductList.SUPER8.serie));
+            }
+        }
+        if(snickers.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                snickers.addObject(new Snickers(ProductList.SNICKERS.serie));
+            }
+        }
+        if(sprite.getArrayList().isEmpty()) {
+            for (int i = 0; i < llenaDeposito; i++) {
+                sprite.addObject(new Snickers(ProductList.SNICKERS.serie));
+            }
         }
     }
+    public Deposito<Producto> getDeposito(ProductList producto) {
+        switch (producto) {
+            case COCA:
+                return coca;
+            case SPRITE:
+                return sprite;
+            case FANTA:
+                return fanta;
+            case SNICKERS:
+                return snickers;
+            case SUPER8:
+                return super8;
+            default:
+                throw new IllegalArgumentException("Producto no válido");
+        }
+    }
+    public int getSerieProducto(ProductList producto) {
+        switch (producto) {
+            case COCA:
+                return ProductList.COCA.getSerie();
+            case SPRITE:
+                return ProductList.SPRITE.getSerie();
+            case FANTA:
+                return ProductList.FANTA.getSerie();
+            case SNICKERS:
+                return ProductList.SNICKERS.getSerie();
+            case SUPER8:
+                return ProductList.SUPER8.getSerie();
+            default:
+                return -1;
+        }
+    }
+    public Deposito getDepositoUnitarioProductoComprado(){
+        return depositoUnitarioProductoComprado;
+    }
+
 
     /**
      * metodo que permite la compra de un producto con una moneda
@@ -109,6 +177,7 @@ public class Expendedor {
         }
 
         Producto p = null;
+
 
         if (l.equals(ProductList.COCA)) {
             p = coca.getObject();
@@ -138,6 +207,8 @@ public class Expendedor {
         }
 
         productoComprado = p;
+        depositoUnitarioProductoComprado.addObject(productoComprado);
+
     }
 
     /**
@@ -149,4 +220,7 @@ public class Expendedor {
         return monVu.getObject();
     }
 
+    public void setProductoCompradoNULL() {
+        productoComprado = null;
+    }
 }
