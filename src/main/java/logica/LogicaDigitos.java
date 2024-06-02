@@ -10,8 +10,10 @@ import java.util.*;
 public class LogicaDigitos implements ActionListener{
 
     private int actualPointer = 0;
-    private String[] digits_pantalla = {"","","","",""};
+    private String[] digits_pantalla = {"","","",""};
     private JLabel pantalla;
+
+    boolean procesandoCompra = false;
     
     public LogicaDigitos(JLabel l){
 	pantalla = l;
@@ -19,6 +21,9 @@ public class LogicaDigitos implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e){
+	if(procesandoCompra)
+	    return;
+
 	for(int i = 0; i < 10; i++){
 	    String aux = i + "";
 	    if(aux.equals(e.getActionCommand())){
@@ -52,6 +57,7 @@ public class LogicaDigitos implements ActionListener{
     }
 
     public void DeleteDigit(){
+
 	digits_pantalla[actualPointer] = "";
 
 	if(actualPointer > 0)
@@ -72,6 +78,7 @@ public class LogicaDigitos implements ActionListener{
 	       TRY HACIA EXPENDEDOR
 	    */
 	    
+	    procesandoCompra = true;
 	    pantalla.setText("SOLICITANDO...");
 	}
     }
