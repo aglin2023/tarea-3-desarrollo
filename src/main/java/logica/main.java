@@ -13,8 +13,8 @@ public class main {
         PanelPrincipal p = new PanelPrincipal();
         frame.setLayout(new BorderLayout());
 
-        int alturaVentana = 300;
-        int anchoVentana = 300;
+        int alturaVentana = 1000;
+        int anchoVentana = 1200;
         frame.setSize(anchoVentana,alturaVentana);
         frame.add(p);
 

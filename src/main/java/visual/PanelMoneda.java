@@ -1,82 +1,50 @@
 package visual;
 
 import logica.Moneda;
-import logica.Moneda100;
-import logica.Moneda500;
-import logica.Moneda1000;
 
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelMoneda extends JFrame {
+public class PanelMoneda extends JPanel {
+    public ArrayList<Moneda> cajitaMonedas;
     private int totalValor;
     private JLabel valorLabel;
 
     public PanelMoneda() {
-        setTitle("Expendedor de Monedas");
+        cajitaMonedas= new ArrayList<Moneda>();
         setSize(300, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
+
+        setLayout(null);
 
         totalValor = 0;
         valorLabel = new JLabel("Valor total: " + totalValor);
 
-        JButton boton100 = new JButton("Moneda de 100");
-        JButton boton500 = new JButton("Moneda de 500");
-        JButton boton1000 = new JButton("Moneda de 1000");
-        JButton botonborrar= new JButton("quitar monedas");
-
-        boton100.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ingresarMoneda(new Moneda100());
-            }
-        });
-
-        boton500.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ingresarMoneda(new Moneda500());
-            }
-        });
-
-        boton1000.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ingresarMoneda(new Moneda1000());
-            }
-        });
-
-        botonborrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                borrarTotal();
-
-            }
-        });
-
-        add(boton100);
-        add(boton500);
-        add(boton1000);
-        add(botonborrar);
+        boton100 b1= new boton100("moneda de 100", valorLabel, this, cajitaMonedas );
+        add(b1);
+        boton500 b2= new boton500("moneda de 500", valorLabel, this, cajitaMonedas);
+        add(b2);
+        boton1000 b3= new boton1000("moneda de 1000", valorLabel, this, cajitaMonedas);
+        add(b3);
+        botonBorrar b4= new botonBorrar("borrar monedas", valorLabel, this, cajitaMonedas);
+        add(b4);
         add(valorLabel);
 
         setVisible(true);
     }
-
-    private void borrarTotal(){
-        totalValor= 0;
-        valorLabel.setText("Valor total: " + totalValor);
+    public void setValor(int a){
+        totalValor=a;
     }
 
-    private void ingresarMoneda(Moneda moneda) {
-        totalValor += moneda.getValor();
-        valorLabel.setText("Valor total: " + totalValor);
+    public int getTotalValor() {
+        return totalValor;
     }
     public void paintComponent(Graphics g){
-        super.paintComponents(g);
+        super.paintComponent(g);
+        dibujadorMonedas dibu= new dibujadorMonedas(cajitaMonedas);
+        dibu.paintComponent(g);
     }
 
 }
