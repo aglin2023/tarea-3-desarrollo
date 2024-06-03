@@ -8,23 +8,23 @@ public enum ProductList {
     /**
      * Representa el producto COCA con precio de 1000
      */
-    COCA(1000, 101),
+    COCA(1000, 1001),
     /**
      * Representa el producto SPRITE con precio de 300
      */
-    SPRITE(300, 102),
+    SPRITE(300, 1002),
     /**
      * Representa el producto FANTA con precio de 1200
      */
-    FANTA(1200,103),
+    FANTA(1200,1003),
     /**
      * Representa el producto SNICKERS con precio de 100
      */
-    SNICKERS(100,104),
+    SNICKERS(100,1004),
     /**
      * Representa el producto SUPER8 con precio de 100
      */
-    SUPER8(100, 105);
+    SUPER8(100, 1005);
 
     /**
      * constructor privado que asigna un precio a un producto

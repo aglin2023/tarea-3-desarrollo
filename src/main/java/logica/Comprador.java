@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.ArrayList;
+
 /**
  * clase que realiza la compra usando las clases Moneda, la lista de productos y el expendedor
  */
@@ -24,7 +26,26 @@ public class Comprador {
      * @throws PagoInsuficienteException puede lanzar esta excepcion si se paga con una moneda de valor menor al producto
      * @throws NoHayProductoException    puede lanzar esta excepcion si no hay producto disponible en el deposito al comprar
      */
-    public Comprador(Moneda m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
+    public Comprador(){
+
+    }
+    public boolean ComprobarSolicitud(int ID, ArrayList<Moneda> mon) throws Exception{
+        ProductList tipoProducto = ComprobarID(ID);
+        ComprobarDinero(mon);
+        return true;
+    }
+    ProductList ComprobarID(int ID) throws Exception{
+        System.out.println(ID);
+        for (ProductList p:ProductList.values()) {
+            if(p.getSerie() == ID)
+                return p;
+        }
+        throw new NoExisteID("No existe el ID: " +ID);
+    }
+    void ComprobarDinero(ArrayList<Moneda> mon){
+    }
+
+    public void  Comprar(Moneda m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
 
         Moneda aux = e.getVuelto();
         while (aux != null) {

@@ -1,4 +1,6 @@
 package logica;
+import visual.PanelDigitos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -9,15 +11,17 @@ import java.util.*;
 
 public class LogicaDigitos implements ActionListener{
 
+	private PanelDigitos panelDigitos;
     private int actualPointer = 0;
     private String[] digits_pantalla = {"","","",""};
     private JLabel pantalla;
 
     boolean procesandoCompra = false;
     
-    public LogicaDigitos(JLabel l){
-	pantalla = l;
-	l.setText("INGRESE EL CÓDIGO DEL PRODUCTO:");
+    public LogicaDigitos(JLabel l, PanelDigitos p){
+		panelDigitos = p;
+		pantalla = l;
+		l.setText("INGRESE EL CÓDIGO DEL PRODUCTO:");
     }
 
     public void actionPerformed(ActionEvent e){
@@ -65,18 +69,28 @@ public class LogicaDigitos implements ActionListener{
 	pantalla.setText(Display());
     }
 
-    public void OkButton(){
-		for (int i = 0;i < digits_pantalla.length; i++) {
-			if(digits_pantalla[i].equals("")){
+    public void OkButton() {
+		for (int i = 0; i < digits_pantalla.length; i++) {
+			if (digits_pantalla[i].equals("")) {
 				pantalla.setText("ERROR... REINGRESAR:");
 				ResetPantalla();
 				return;
 			}
 		}
-
 			/*
-			   TRY HACIA EXPENDEDOR
+			   TRY HACIA COMPRADOR
 			*/
+			try {
+				panelDigitos.getPanelComprador().MandarSolicitudCompra(getActualID());
+			}
+			catch (NoExisteID e) {
+				pantalla.setText("NO EXISTE ID");
+				ResetPantalla();
+				return;
+			}
+			catch (Exception e)
+			{
+			}
 
 			procesandoCompra = true;
 			pantalla.setText("SOLICITANDO...");
@@ -102,6 +116,14 @@ public class LogicaDigitos implements ActionListener{
 
 	return aux;
     }
+	public  int getActualID(){
+		String aux = "";
+		for (int i = 0; i < digits_pantalla.length;i++)
+		{
+			aux += digits_pantalla[i];
+		}
+		return Integer.valueOf(aux);
+	}
 }
 	
 

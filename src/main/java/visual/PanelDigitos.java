@@ -10,17 +10,19 @@ import java.util.*;
 
 public class PanelDigitos extends JPanel{
 
+	private JPanelComprador panelComprador;
     private ArrayList<JButton> botones;
     private LogicaDigitos logica;
 
-    public PanelDigitos(){
+    public PanelDigitos(JPanelComprador pCom){
+		panelComprador = pCom;
 		this.setLayout(null);
 
 		JLabel l = new JLabel("",JLabel.LEFT);
 		l.setBounds(0,0,300,20);
 		this.add(l);
 
-		logica = new LogicaDigitos(l);
+		logica = new LogicaDigitos(l,this);
 		CreateBotones(0,40,12);
     }
     
@@ -68,6 +70,10 @@ public class PanelDigitos extends JPanel{
 			this.add(b);
 		}
     }
+
+	public JPanelComprador getPanelComprador() {
+		return panelComprador;
+	}
 	
     public void paintComponent(Graphics g){
 	super.paintComponent(g);
