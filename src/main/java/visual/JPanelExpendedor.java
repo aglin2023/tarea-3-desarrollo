@@ -15,16 +15,19 @@ public class JPanelExpendedor extends JPanel {
     private Map<String, Point> imagenCords;
     private ProductList[] productos;
     private Expendedor expendedor;
-    private JButton botonRellenarYsacar;
+    private JPanelDepositoUnico depositoUnico;
+    private JButton botonRellenar;
+    private JButton botonSacar;
 
 
 
-    public JPanelExpendedor(Expendedor expendedor){
-//        super();
+
+    public JPanelExpendedor(Expendedor expendedor, JPanelDepositoUnico panelDepositoUnico){
         this.setLayout(null);
         this.expendedorLabel = new JLabel();
         this.expendedor = expendedor;
-        this.setPreferredSize(new Dimension(700, 1000));
+        this.depositoUnico = panelDepositoUnico;
+        this.setPreferredSize(new Dimension(700, 850));
         imagenCords = new HashMap<>();
         this.productos = new ProductList[]{
                 ProductList.COCA,
@@ -34,20 +37,14 @@ public class JPanelExpendedor extends JPanel {
                 ProductList.SUPER8
         };
 
-       //Logica botones
+       //Agrego botones
+        botonRellenar = new BotonRellenar(expendedor, this);
+        botonRellenar.setBounds(0,0,700,750);
 
-        botonRellenarYsacar = new JButton();
-        botonRellenarYsacar.setBounds(0,0,700,1000);
-        botonRellenarYsacar.setOpaque(false);
-        botonRellenarYsacar.setContentAreaFilled(false);
-        botonRellenarYsacar.setBorderPainted(false);
-        botonRellenarYsacar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                expendedor.rellenarDepositos();
-                cargarPanel();
-            }
-        });
+
+        botonSacar = new BotonSacar(expendedor, panelDepositoUnico);
+        botonSacar.setBounds(0,0,700,250);
+
 
         cargarPanel();
     }
@@ -55,37 +52,17 @@ public class JPanelExpendedor extends JPanel {
     public void cargarPanel(){
         // La idea aqui es cargar el panel cuando se aplique algun boton, cambio en ventana, etc...
         this.removeAll();
-
-
-        Deposito <Producto> deposito = expendedor.getDepositoUnitarioProductoComprado();
-        Producto comprado = null;
-        if(deposito.tieneProductos()){
-            comprado = deposito.getObject();
-        }
-
-        if(comprado != null) {
-            if(comprado instanceof CocaCola) {
-                crearImagen(productos[0].name().toLowerCase() + ".png", 300,790, 80, 80);
-            } else if (comprado instanceof  Sprite) {
-                crearImagen(productos[1].name().toLowerCase() + ".png", 300,790, 80, 80);
-            } else if (comprado instanceof Fanta) {
-                crearImagen(productos[2].name().toLowerCase() + ".png", 300,790, 80, 80);
-            } else if (comprado instanceof Snickers) {
-                crearImagen(productos[3].name().toLowerCase() + ".png", 300,790, 80, 80);
-            } else if (comprado instanceof Super8) {
-                crearImagen(productos[4].name().toLowerCase() + ".png", 300,790, 80, 80);
-            }
-        }
-
         cargarImagenes();
+        depositoUnico.actualizarImagen();
         agregarImagenExpendedor();
-        this.add(botonRellenarYsacar);
+        this.add(botonRellenar);
+        depositoUnico.add(botonSacar);
         this.repaint();
     }
 
     public void agregarImagenExpendedor(){
         ImageIcon imagenExpendedor = new ImageIcon("src/main/java/visual/Models/expendedor.png");
-        ImageIcon nuevaImagen = JPanelExpendedor.nuevoTamañoImagen(imagenExpendedor, 700, 1000);
+        ImageIcon nuevaImagen = this.nuevoTamañoImagen(imagenExpendedor, 700, 1000);
         expendedorLabel = new JLabel(nuevaImagen);
         expendedorLabel.setBounds(0,0, nuevaImagen.getIconWidth(), nuevaImagen.getIconHeight());
         add(expendedorLabel);
@@ -118,7 +95,7 @@ public class JPanelExpendedor extends JPanel {
 
     public void crearImagen(String imagen, int x, int y, int ancho, int alto) {
         ImageIcon icon = new ImageIcon("src/main/java/visual/Models/" + imagen);
-        ImageIcon nuevaIcon = nuevoTamañoImagen(icon, ancho, alto);
+        ImageIcon nuevaIcon = this.nuevoTamañoImagen(icon, ancho, alto);
         JLabel label = new JLabel(nuevaIcon);
         label.setBounds(x, y, nuevaIcon.getIconWidth(), nuevaIcon.getIconHeight()); // Establece las coordenadas y tamaño
         add(label); // Agrega el JLabel al JPanel
@@ -128,7 +105,7 @@ public class JPanelExpendedor extends JPanel {
         imagenCords.put(nombreSinExtension, new Point(x, y)); // Guarda las coordenadas de la imagen
     }
 
-    public static ImageIcon nuevoTamañoImagen(ImageIcon icon, int ancho, int alto) {
+    public ImageIcon nuevoTamañoImagen(ImageIcon icon, int ancho, int alto) {
         Image img = icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         return new ImageIcon(img);
     }
