@@ -6,16 +6,24 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JPanelPrincipal extends JPanel {
-    private JPanelExpendedor exp;
-    //private JPanelComprador com;
+    private JPanelExpendedor panelExpendedor;
+    private JPanelDepositoUnico panelDepositoUnico;
 
-    public JPanelPrincipal(){
+    public JPanelPrincipal(Expendedor expendedor){
         this.setLayout(null);
         this.setPreferredSize(new Dimension(1400,1000));
-        exp = new JPanelExpendedor(new Expendedor(5));
-        exp.setBounds(0, 0, 700, 1000);
-        // com = new JPanelComprador(exp);
-        this.add(exp);
+
+        // Crea JPanelDepositoUnico y lo agrega a JPanelPrincipal
+        panelDepositoUnico = new JPanelDepositoUnico(expendedor);
+        panelDepositoUnico.setBounds(0, 750, 700, 250);
+        this.add(panelDepositoUnico);
+
+        // Crea JPanelExpendedor y lo agrega a JPanelPrincipal
+        panelExpendedor = new JPanelExpendedor(expendedor, panelDepositoUnico);
+        panelExpendedor.setBounds(0, 0, 700, 750);
+        this.add(panelExpendedor);
+
+
     }
 
     public void paintComponent(Graphics g){
