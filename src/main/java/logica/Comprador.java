@@ -46,15 +46,18 @@ public class Comprador {
     ArrayList<Moneda> ComprobarDinero(ArrayList<Moneda> mon,ProductList p){
         ArrayList<Moneda> pago = new ArrayList<Moneda>();
         int precioProducto = p.getPrice().getValor();
-        int count = 0;
-        for(Moneda m : mon) {
-            count += m.getValor();
-            pago.add(m);
-            if(count >= precioProducto)
-                return pago;
-        }
-        System.out.println(count);
+        int sumMon = 0;
+        int countMon = 0;
 
+        for(Moneda m : mon) {
+            countMon++;
+            sumMon += m.getValor();
+            pago.add(m);
+            if(sumMon >= precioProducto){
+                mon.removeAll(pago);
+            }
+            return pago;
+        }
         return null;
     }
 

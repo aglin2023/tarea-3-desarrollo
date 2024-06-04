@@ -94,7 +94,9 @@ public class LogicaDigitos implements ActionListener{
 				ResetPantalla();
 				return;
 			}
-			catch (Exception e) {}
+			catch (Exception e) {
+				System.out.println(e.toString());
+			}
 
 			procesandoCompra = true;
 			pantalla.setText("SOLICITANDO...");

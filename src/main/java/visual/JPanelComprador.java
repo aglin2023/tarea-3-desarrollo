@@ -1,9 +1,6 @@
 package visual;
 
-import logica.Comprador;
-import logica.Expendedor;
-import logica.Moneda;
-import logica.Moneda500;
+import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +25,7 @@ public class JPanelComprador extends JPanel {
         ArrayList<Moneda> m = new ArrayList<Moneda>();
         m.add(new Moneda500());
 
+        logicaExpendedor = new Expendedor(4);
         logicaComprador.ComprobarSolicitud(ID,m,logicaExpendedor);
     }
 
