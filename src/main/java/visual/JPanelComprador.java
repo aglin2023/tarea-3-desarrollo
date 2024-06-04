@@ -1,8 +1,9 @@
 package visual;
 
 import logica.Comprador;
+import logica.Expendedor;
 import logica.Moneda;
-import logica.Moneda1000;
+import logica.Moneda500;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class JPanelComprador extends JPanel {
     private PanelDigitos panelDigitos;
     private Comprador logicaComprador;
+    private Expendedor logicaExpendedor;
 
     public JPanelComprador() {
 
@@ -24,9 +26,13 @@ public class JPanelComprador extends JPanel {
 
     public void MandarSolicitudCompra(int ID) throws Exception{
         ArrayList<Moneda> m = new ArrayList<Moneda>();
-        m.add(new Moneda1000());
+        m.add(new Moneda500());
 
-        logicaComprador.ComprobarSolicitud(ID,m);
+        logicaComprador.ComprobarSolicitud(ID,m,logicaExpendedor);
+    }
+
+    public void SetExpendedor(Expendedor e) {
+        logicaExpendedor = e;
     }
 
     @Override

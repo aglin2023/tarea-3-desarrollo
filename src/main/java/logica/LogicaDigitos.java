@@ -88,9 +88,13 @@ public class LogicaDigitos implements ActionListener{
 				ResetPantalla();
 				return;
 			}
-			catch (Exception e)
+			catch (PagoInsuficienteException e)
 			{
+				pantalla.setText("PAGO INSUFICIENTE");
+				ResetPantalla();
+				return;
 			}
+			catch (Exception e) {}
 
 			procesandoCompra = true;
 			pantalla.setText("SOLICITANDO...");

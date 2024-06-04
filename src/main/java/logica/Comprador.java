@@ -19,9 +19,6 @@ public class Comprador {
     /**
      * constructor que utiliza de parametros monedas, la lista de productos y el expendedor
      *
-     * @param m moneda a utilizar
-     * @param c lista de productos
-     * @param e expendedor
      * @throws PagoIncorrectoException   puede lanzar esta excepcion si se paga con una moneda con valor menor a 0
      * @throws PagoInsuficienteException puede lanzar esta excepcion si se paga con una moneda de valor menor al producto
      * @throws NoHayProductoException    puede lanzar esta excepcion si no hay producto disponible en el deposito al comprar
@@ -29,24 +26,40 @@ public class Comprador {
     public Comprador(){
 
     }
-    public boolean ComprobarSolicitud(int ID, ArrayList<Moneda> mon) throws Exception{
+    public boolean ComprobarSolicitud(int ID, ArrayList<Moneda> mon,Expendedor e) throws Exception{
         ProductList tipoProducto = ComprobarID(ID);
-        ComprobarDinero(mon);
+        ArrayList<Moneda> pago = ComprobarDinero(mon,tipoProducto);
+        if(pago == null)
+            throw new PagoInsuficienteException("Falta Dinero");
+
+        Comprar(pago,tipoProducto,e);
         return true;
     }
     ProductList ComprobarID(int ID) throws Exception{
-        System.out.println(ID);
         for (ProductList p:ProductList.values()) {
             if(p.getSerie() == ID)
                 return p;
         }
         throw new NoExisteID("No existe el ID: " +ID);
     }
-    void ComprobarDinero(ArrayList<Moneda> mon){
+
+    ArrayList<Moneda> ComprobarDinero(ArrayList<Moneda> mon,ProductList p){
+        ArrayList<Moneda> pago = new ArrayList<Moneda>();
+        int precioProducto = p.getPrice().getValor();
+        int count = 0;
+        for(Moneda m : mon) {
+            count += m.getValor();
+            pago.add(m);
+            if(count >= precioProducto)
+                return pago;
+        }
+        System.out.println(count);
+
+        return null;
     }
 
-    public void  Comprar(Moneda m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
-
+    public void Comprar(ArrayList<Moneda> m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
+        e.comprarProducto(m.remove(0),c);
         Moneda aux = e.getVuelto();
         while (aux != null) {
             vueltoTotal += aux.getValor();
