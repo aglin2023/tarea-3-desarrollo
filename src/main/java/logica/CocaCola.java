@@ -15,7 +15,7 @@ public class CocaCola extends Bebida {
      * metodo que devuelve un string que representa el nombre de la bebida
      */
     public String consumido() {
-        return "CocaCola";
+        return "Coca";
     }
 
 

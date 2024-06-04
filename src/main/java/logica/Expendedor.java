@@ -61,7 +61,7 @@ public class Expendedor {
         this.llenaDeposito = llenaDeposito;
 
         //prueba
-        productoComprado = new CocaCola(106);
+        productoComprado = new Snickers(106);
         depositoUnitarioProductoComprado.addObject(productoComprado);
 
         coca = new Deposito<>();

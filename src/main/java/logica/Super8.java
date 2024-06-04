@@ -15,7 +15,7 @@ public class Super8 extends Dulce {
      * metodo que devuelve un string que representa el nombre del dulce
      */
     public String consumido() {
-        return "super 8";
+        return "super8";
     }
 
 
