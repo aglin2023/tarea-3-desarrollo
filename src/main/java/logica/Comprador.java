@@ -7,6 +7,7 @@ import java.util.ArrayList;
  */
 public class Comprador {
 
+    private ArrayList<Moneda> bolsillo;
     /**
      * variable que permite mostrar en un string el producto consumido
      */
@@ -23,12 +24,12 @@ public class Comprador {
      * @throws PagoInsuficienteException puede lanzar esta excepcion si se paga con una moneda de valor menor al producto
      * @throws NoHayProductoException    puede lanzar esta excepcion si no hay producto disponible en el deposito al comprar
      */
-    public Comprador(){
-
+    public Comprador(ArrayList<Moneda> m){
+        bolsillo = m;
     }
-    public boolean ComprobarSolicitud(int ID, ArrayList<Moneda> mon,Expendedor e) throws Exception{
+    public boolean ComprobarSolicitud(int ID,Expendedor e) throws Exception{
         ProductList tipoProducto = ComprobarID(ID);
-        ArrayList<Moneda> pago = ComprobarDinero(mon,tipoProducto);
+        ArrayList<Moneda> pago = ComprobarDinero(tipoProducto);
         if(pago == null)
             throw new PagoInsuficienteException("Falta Dinero");
 
@@ -43,20 +44,20 @@ public class Comprador {
         throw new NoExisteID("No existe el ID: " +ID);
     }
 
-    ArrayList<Moneda> ComprobarDinero(ArrayList<Moneda> mon,ProductList p){
+    ArrayList<Moneda> ComprobarDinero(ProductList p){
         ArrayList<Moneda> pago = new ArrayList<Moneda>();
         int precioProducto = p.getPrice().getValor();
         int sumMon = 0;
-        int countMon = 0;
 
-        for(Moneda m : mon) {
-            countMon++;
+        for(Moneda m : bolsillo) {
             sumMon += m.getValor();
             pago.add(m);
             if(sumMon >= precioProducto){
-                mon.removeAll(pago);
+                bolsillo.removeAll(pago);
+                return pago;
             }
-            return pago;
+            else
+                System.out.println(sumMon);
         }
         return null;
     }

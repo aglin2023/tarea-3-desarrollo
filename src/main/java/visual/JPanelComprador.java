@@ -13,13 +13,17 @@ public class JPanelComprador extends JPanel {
     private PanelMoneda panelMoneda;
     private PanelDigitos panelDigitos;
 
+    private ArrayList<Moneda> m;
+
     public JPanelComprador() {
         int widthDigitos = 200;
         int heightDigitos = 320;
 
-        logicaComprador = new Comprador();
+        m = new ArrayList<Moneda>();
+        logicaComprador = new Comprador(m);
+        panelMoneda = new PanelMoneda(m);
         panelDigitos = new PanelDigitos(this,widthDigitos,heightDigitos);
-        panelMoneda = new PanelMoneda();
+
 
         setLayout(null);
         panelDigitos.setBounds(0,0,widthDigitos,heightDigitos);
@@ -30,7 +34,7 @@ public class JPanelComprador extends JPanel {
     }
 
     public void MandarSolicitudCompra(int ID) throws Exception{
-        logicaComprador.ComprobarSolicitud(ID,panelMoneda.cajitaMonedas,logicaExpendedor);
+        logicaComprador.ComprobarSolicitud(ID,new Expendedor(4));
     }
 
     public void SetExpendedor(Expendedor e) {

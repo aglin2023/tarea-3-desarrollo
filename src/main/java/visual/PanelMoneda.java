@@ -9,12 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelMoneda extends JPanel {
-    public ArrayList<Moneda> cajitaMonedas;
+    private ArrayList<Moneda> cajitaMonedas;
     private int totalValor;
     private JLabel valorLabel;
 
-    public PanelMoneda() {
-        cajitaMonedas= new ArrayList<Moneda>();
+    public PanelMoneda(ArrayList<Moneda> m) {
+        cajitaMonedas = m;
 
         totalValor = 0;
         valorLabel = new JLabel("Valor total: " + totalValor);
