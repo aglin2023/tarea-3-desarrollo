@@ -1,5 +1,7 @@
 package logica;
 
+import java.awt.*;
+
 /**
  * clase que representa una de las distintas monedas, subclase de Moneda
  */
@@ -11,5 +13,9 @@ public class Moneda100 extends Moneda {
      */
     public int getValor() {
         return 100;
+    }
+
+    public void paintComponent(Graphics g, int x, int y){
+
     }
 }

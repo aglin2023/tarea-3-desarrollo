@@ -10,20 +10,26 @@ import java.util.*;
 
 public class PanelDigitos extends JPanel{
 
+	private int widthSize;
+	private int heightSize;
+	private int margen = 20;
+
+	private JLabel textLabel;
 	private JPanelComprador panelComprador;
     private ArrayList<JButton> botones;
     private LogicaDigitos logica;
 
-    public PanelDigitos(JPanelComprador pCom){
+    public PanelDigitos(JPanelComprador pCom, int wS,int hS){
+		setBackground(Color.gray);
+		widthSize = wS;
+		heightSize = hS;
+
+		textLabel = new JLabel("",JLabel.LEFT);
 		panelComprador = pCom;
 		this.setLayout(null);
 
-		JLabel l = new JLabel("",JLabel.LEFT);
-		l.setBounds(0,0,300,20);
-		this.add(l);
-
-		logica = new LogicaDigitos(l,this);
-		CreateBotones(0,40,12);
+		logica = new LogicaDigitos(textLabel,this);
+		CreateBotones(margen,margen*4,12);
     }
     
     public void CreateBotones(int x, int y,int size){
@@ -35,8 +41,8 @@ public class PanelDigitos extends JPanel{
 
 			String ButtonLabel = ""+i;
 
-			int width = 55;
-			int height = 55;
+			int width = (widthSize-margen*2-4)/3;
+			int height = width;
 
 			if(i == 0)
 				xGridCount = 1;
@@ -76,6 +82,13 @@ public class PanelDigitos extends JPanel{
 	}
 	
     public void paintComponent(Graphics g){
-	super.paintComponent(g);
+		super.paintComponent(g);
+		g.fillRect(margen-2,margen,widthSize - 2*margen,margen*2);
+
+		textLabel.setBounds(0,20,widthSize,margen*2-5);
+		textLabel.setForeground(Color.GREEN);
+		textLabel.setHorizontalAlignment(JLabel.CENTER);
+		this.add(textLabel);
+
     }
 }

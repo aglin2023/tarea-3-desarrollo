@@ -7,26 +7,30 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class JPanelComprador extends JPanel {
-    private PanelDigitos panelDigitos;
     private Comprador logicaComprador;
     private Expendedor logicaExpendedor;
 
+    private PanelMoneda panelMoneda;
+    private PanelDigitos panelDigitos;
+
     public JPanelComprador() {
+        int widthDigitos = 200;
+        int heightDigitos = 320;
 
         logicaComprador = new Comprador();
-        panelDigitos = new PanelDigitos(this);
+        panelDigitos = new PanelDigitos(this,widthDigitos,heightDigitos);
+        panelMoneda = new PanelMoneda();
 
-        setLayout(new GridLayout(1,2));
+        setLayout(null);
+        panelDigitos.setBounds(0,0,widthDigitos,heightDigitos);
+        panelMoneda.setBounds(widthDigitos,0,500,1000);
+
         this.add(panelDigitos);
-        this.add(new JPanel());
+        this.add(panelMoneda);
     }
 
     public void MandarSolicitudCompra(int ID) throws Exception{
-        ArrayList<Moneda> m = new ArrayList<Moneda>();
-        m.add(new Moneda500());
-
-        logicaExpendedor = new Expendedor(4);
-        logicaComprador.ComprobarSolicitud(ID,m,logicaExpendedor);
+        logicaComprador.ComprobarSolicitud(ID,panelMoneda.cajitaMonedas,logicaExpendedor);
     }
 
     public void SetExpendedor(Expendedor e) {
@@ -36,6 +40,7 @@ public class JPanelComprador extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        panelMoneda.paintComponent(g);
         panelDigitos.paintComponent(g);
     }
 }

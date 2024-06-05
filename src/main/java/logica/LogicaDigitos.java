@@ -21,7 +21,7 @@ public class LogicaDigitos implements ActionListener{
     public LogicaDigitos(JLabel l, PanelDigitos p){
 		panelDigitos = p;
 		pantalla = l;
-		l.setText("INGRESE EL CÓDIGO DEL PRODUCTO:");
+		l.setText("ID DEL PRODUCTO:");
     }
 
     public void actionPerformed(ActionEvent e){

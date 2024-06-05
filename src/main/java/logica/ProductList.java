@@ -1,5 +1,7 @@
 package logica;
 
+import java.awt.*;
+
 /**
  * Enumeracion que representa una lista de productos con sus precios
  */
@@ -38,6 +40,11 @@ public enum ProductList {
             /**@return regresa el valor del precio de un producto */
             public int getValor() {
                 return price;
+            }
+
+            @Override
+            public void paintComponent(Graphics g, int x, int y) {
+
             }
         };
         this.serie = serie;
