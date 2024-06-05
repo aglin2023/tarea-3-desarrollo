@@ -98,7 +98,7 @@ public class LogicaDigitos implements ActionListener{
 			catch (Exception e) {
 				if(e.getMessage().equals("Primero saque el producto anterior"))
 				{
-					pantalla.setText("PRIMERO SAQUE EL PRODUCTO ANTERIOR");
+					pantalla.setText("RETIRE EL PRODUCTO");
 					procesandoCompra = true;
 					resetPantalla();
 					return;
