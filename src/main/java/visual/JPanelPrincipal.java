@@ -5,12 +5,18 @@ import logica.Expendedor;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * JPanel que representa el panel principal de la interfaz.
+ */
 public class JPanelPrincipal extends JPanel {
     private final JPanelExpendedor panelExpendedor;
     private final JPanelDepositoUnico panelDepositoUnico;
     private final JPanelPrecios panelPrecios;
     private final JPanelComprador panelComprador;
 
+    /**
+     * Constructor de JPanelPrincipal que inicializa los componentes de la interfaz.
+     */
     public JPanelPrincipal() {
         Expendedor expendedor = new Expendedor(4);
 
@@ -28,7 +34,6 @@ public class JPanelPrincipal extends JPanel {
         gbc.ipady = 230;
 
         this.add(panelDepositoUnico, gbc);
-
 
         // Crea JPanelExpendedor y lo agrega a JPanelPrincipal
         panelExpendedor = new JPanelExpendedor(expendedor, panelDepositoUnico);
@@ -53,7 +58,6 @@ public class JPanelPrincipal extends JPanel {
         gbc.fill = GridBagConstraints.VERTICAL;
         this.add(panelPrecios, gbc);
 
-
         panelComprador = new JPanelComprador(panelExpendedor, expendedor);
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -66,6 +70,11 @@ public class JPanelPrincipal extends JPanel {
         this.add(panelComprador, gbc);
     }
 
+    /**
+     * Método que dibuja el componente.
+     *
+     * @param g Objeto Graphics usado para dibujar.
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
     }

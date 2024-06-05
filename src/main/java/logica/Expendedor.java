@@ -4,65 +4,70 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
- * clase que representa el funcionamiento de un expendedor de productos
+ * Clase que representa el funcionamiento de un expendedor de productos.
  */
 public class Expendedor {
 
     /**
-     * variable que representa el monto del vuelto de la compra del producto
+     * Variable que representa el monto del vuelto de la compra del producto.
      */
     private Deposito<Moneda> monVu;
 
     /**
-     * variable que hace referencia a un deposito de coca
+     * Variable que hace referencia a un depósito de coca.
      */
     private Deposito<Producto> coca;
 
     /**
-     * variable que hace referencia a un deposito de sprite
+     * Variable que hace referencia a un depósito de sprite.
      */
     private Deposito<Producto> sprite;
 
     /**
-     * variable que hace referencia a un deposito de fanta
+     * Variable que hace referencia a un depósito de fanta.
      */
     private Deposito<Producto> fanta;
 
     /**
-     * variable que hace referencia a un deposito de snickers
+     * Variable que hace referencia a un depósito de snickers.
      */
     private Deposito<Producto> snickers;
 
     /**
-     * variable que hace referencia a un deposito de super8
+     * Variable que hace referencia a un depósito de super8.
      */
     private Deposito<Producto> super8;
 
     /**
-     * Deposito unitario
+     * Depósito unitario para el producto comprado.
      */
     private Deposito depositoUnitarioProductoComprado;
+
     /**
-     * Deposito de monedas
+     * Depósito de monedas.
      */
     private Deposito<Moneda> monederoExpendedor;
+
     /**
-     * Producto comprado
+     * Producto comprado.
      */
     private Producto productoComprado;
+
+    /**
+     * Cantidad para llenar el depósito.
+     */
     private static int llenaDeposito;
 
     /**
-     * constructor de expendedor en el que se llena los depositos de cada producto con un int
+     * Constructor de Expendedor en el que se llenan los depósitos de cada producto.
      *
-     * @param llenaDeposito valor que representa cuanto de cada producto se llena cada deposito
+     * @param llenaDeposito valor que representa cuánto de cada producto se llena cada depósito
      */
     public Expendedor(int llenaDeposito) {
         monVu = new Deposito<Moneda>();
         monederoExpendedor = new Deposito<Moneda>();
         this.depositoUnitarioProductoComprado = new Deposito<Producto>();
         this.llenaDeposito = llenaDeposito;
-
 
         coca = new Deposito<>();
         sprite = new Deposito<>();
@@ -77,17 +82,29 @@ public class Expendedor {
             snickers.addObject(new Snickers(400 + i));
             super8.addObject(new Super8(500 + i));
         }
-
     }
 
+    /**
+     * Obtiene la cantidad para llenar el depósito.
+     *
+     * @return la cantidad para llenar el depósito
+     */
     public int getLlenaDeposito() {
         return llenaDeposito;
     }
 
+    /**
+     * Obtiene el monedero del expendedor.
+     *
+     * @return el depósito de monedas del expendedor
+     */
     public Deposito getMonederoExpendedor() {
         return monederoExpendedor;
     }
 
+    /**
+     * Rellena los depósitos de productos si están vacíos.
+     */
     public void rellenarDepositos() {
         if (coca.getArrayList().isEmpty()) {
             for (int i = 0; i < llenaDeposito; i++) {
@@ -116,6 +133,12 @@ public class Expendedor {
         }
     }
 
+    /**
+     * Obtiene el depósito correspondiente al tipo de producto.
+     *
+     * @param producto el tipo de producto
+     * @return el depósito del producto
+     */
     public Deposito<Producto> getDeposito(ProductList producto) {
         switch (producto) {
             case COCA:
@@ -133,21 +156,26 @@ public class Expendedor {
         }
     }
 
+    /**
+     * Obtiene el depósito unitario del producto comprado.
+     *
+     * @return el depósito unitario del producto comprado
+     */
     public Deposito getDepositoUnitarioProductoComprado() {
         return depositoUnitarioProductoComprado;
     }
 
-
     /**
-     * metodo que permite la compra de un producto con una moneda
+     * Método que permite la compra de un producto con monedas.
      *
-     * @param m la moneda ingresada
+     * @param m la lista de monedas ingresadas
      * @param l el producto que se quiere comprar
-     * @throws PagoInsuficienteException si el valor de la moneda no es suficiente para comprar el producto
-     * @throws PagoIncorrectoException   si no se entrega una moneda o moneda es un null
-     * @throws NoHayProductoException    si el producto que se quiere comprar, no está disponible
+     * @param total la lista de monedas que se sumarán al total
+     * @throws PagoInsuficienteException si el valor de las monedas no es suficiente para comprar el producto
+     * @throws PagoIncorrectoException   si no se entrega una moneda o la moneda es null
+     * @throws NoHayProductoException    si el producto que se quiere comprar no está disponible
      */
-    public void comprarProducto(ArrayList<Moneda> m, ProductList l,ArrayList<Moneda> total) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
+    public void comprarProducto(ArrayList<Moneda> m, ProductList l, ArrayList<Moneda> total) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
         if (m == null) {
             throw new PagoIncorrectoException("No ingresaste moneda");
         }
@@ -171,22 +199,22 @@ public class Expendedor {
         }
 
         if (p == null) {
-            for (int i = 0 ; i < m.size();i++) {
+            for (int i = 0; i < m.size(); i++) {
                 monVu.addObject(m.get(i));
-                total.add(i,m.get(i));
+                total.add(i, m.get(i));
             }
             throw new NoHayProductoException("No hay " + l);
         }
 
         int vuelto = 0;
-        for (int i = 0; i < m.size();i++) {
+        for (int i = 0; i < m.size(); i++) {
             monederoExpendedor.addObject(m.get(i));
             vuelto += m.get(i).getValor();
         }
         vuelto -= l.getPrice().getValor();
 
         if (vuelto < 0) {
-            for (int i = 0; i< m.size();i++) {
+            for (int i = 0; i < m.size(); i++) {
                 monVu.addObject(m.get(i));
             }
             throw new PagoInsuficienteException("Le faltan: " + -1 * vuelto + " monedas");
@@ -201,13 +229,12 @@ public class Expendedor {
 
         productoComprado = p;
         depositoUnitarioProductoComprado.addObject(productoComprado);
-
     }
 
     /**
-     * metodo que regresa el vuelto al comprar un producto
+     * Método que regresa el vuelto al comprar un producto.
      *
-     * @return valor del vuelto de la compra
+     * @return el valor del vuelto de la compra
      */
     public Moneda getVuelto() {
         return monVu.getObject();

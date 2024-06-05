@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Clase que representa el panel del comprador en la interfaz gráfica.
+ */
 public class JPanelComprador extends JPanel {
     private final Comprador logicaComprador;
     private final Expendedor logicaExpendedor;
@@ -17,6 +20,12 @@ public class JPanelComprador extends JPanel {
 
     private final ArrayList<Moneda> m;
 
+    /**
+     * Constructor del panel del comprador.
+     *
+     * @param panelExpendedor el panel del expendedor
+     * @param expendedor      la instancia del expendedor
+     */
     public JPanelComprador(JPanelExpendedor panelExpendedor, Expendedor expendedor) {
         int widthDigitos = 200;
         int heightDigitos = 320;
@@ -28,7 +37,6 @@ public class JPanelComprador extends JPanel {
 
         panelDigitos = new PanelDigitos(this, widthDigitos, heightDigitos);
         panelMoneda = new PanelMoneda(m);
-
 
         setLayout(new BorderLayout());
         JLayeredPane layeredPane = new JLayeredPane();
@@ -46,6 +54,12 @@ public class JPanelComprador extends JPanel {
         add(layeredPane, BorderLayout.CENTER);
     }
 
+    /**
+     * Método para enviar una solicitud de compra al expendedor.
+     *
+     * @param ID el ID del producto a comprar
+     * @throws Exception si ocurre un error durante la compra
+     */
     public void MandarSolicitudCompra(int ID) throws Exception {
         if (logicaExpendedor.getDepositoUnitarioProductoComprado().getArrayList().size() > 0) {
             throw new Exception("Primero saque el producto anterior");

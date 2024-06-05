@@ -8,18 +8,32 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Clase que maneja los eventos de acción para el monedero del expendedor.
+ */
 public class ActionListenerMonederoExpendedor implements ActionListener {
     private final JPanelExpendedor panelExpendedor;
     private final Expendedor expendedor;
     private final PanelMoneda panelMoneda;
 
+    /**
+     * Constructor para inicializar el ActionListenerMonederoExpendedor.
+     *
+     * @param expendedor     la instancia del expendedor
+     * @param panelExpendedor el panel del expendedor
+     * @param panelMoneda    el panel de las monedas
+     */
     public ActionListenerMonederoExpendedor(Expendedor expendedor, JPanelExpendedor panelExpendedor, PanelMoneda panelMoneda) {
         this.expendedor = expendedor;
         this.panelExpendedor = panelExpendedor;
         this.panelMoneda = panelMoneda;
     }
 
-
+    /**
+     * Maneja el evento de acción cuando se activa.
+     *
+     * @param e el evento de acción
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         JFrame nuevaVentana = new JFrame("Monedero Expendedor");

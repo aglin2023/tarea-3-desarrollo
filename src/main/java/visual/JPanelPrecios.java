@@ -7,12 +7,18 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Clase que representa el panel de precios en la interfaz gráfica.
+ */
 public class JPanelPrecios extends JPanel {
     private final JLabel[] nombreProducto;
     private final JLabel[] precioProducto;
     private final JLabel[] idProducto;
     private final ProductList[] productos;
 
+    /**
+     * Constructor del panel de precios.
+     */
     public JPanelPrecios() {
         this.setLayout(new GridLayout(5, 3));
         this.productos = new ProductList[]{
@@ -30,7 +36,6 @@ public class JPanelPrecios extends JPanel {
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
         }
-
 
         // Inicializa los arrays de JLabels
         nombreProducto = new JLabel[5];
@@ -60,10 +65,14 @@ public class JPanelPrecios extends JPanel {
         }
     }
 
+    /**
+     * Método para dibujar los bordes del panel de precios.
+     *
+     * @param g el contexto gráfico utilizado para dibujar
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawRect(0, 0, 680, 218);
-
     }
 
 }

@@ -3,47 +3,64 @@ package logica;
 import java.util.ArrayList;
 
 /**
- * clase que realiza la compra usando las clases Moneda, la lista de productos y el expendedor
+ * Clase que representa al comprador y gestiona el proceso de compra.
  */
 public class Comprador {
 
     private ArrayList<Moneda> bolsillo;
-    /**
-     * variable que permite mostrar en un string el producto consumido
-     */
+    /** Variable que representa el sonido del producto consumido. */
     private String sonido;
-    /**
-     * variable que representa el vuelto total que se entrega con la compra
-     */
+    /** Variable que representa el vuelto total que se entrega con la compra. */
     private int vueltoTotal;
 
     /**
-     * constructor que utiliza de parametros monedas, la lista de productos y el expendedor
+     * Constructor de la clase Comprador.
      *
-     * @throws PagoIncorrectoException   puede lanzar esta excepcion si se paga con una moneda con valor menor a 0
-     * @throws PagoInsuficienteException puede lanzar esta excepcion si se paga con una moneda de valor menor al producto
-     * @throws NoHayProductoException    puede lanzar esta excepcion si no hay producto disponible en el deposito al comprar
+     * @param m Lista de monedas en el bolsillo del comprador.
      */
     public Comprador(ArrayList<Moneda> m){
         bolsillo = m;
     }
-    public boolean ComprobarSolicitud(int ID,Expendedor e) throws Exception{
+
+    /**
+     * Verifica la solicitud de compra y procesa la transacción.
+     *
+     * @param ID Identificador del producto a comprar.
+     * @param e Expendedor asociado.
+     * @return true si la compra fue exitosa, de lo contrario false.
+     * @throws Exception Excepción que puede ser lanzada durante el proceso de compra.
+     */
+    public boolean ComprobarSolicitud(int ID, Expendedor e) throws Exception{
         ProductList tipoProducto = ComprobarID(ID);
         ArrayList<Moneda> pago = ComprobarDinero(tipoProducto);
         if(pago == null)
             throw new PagoInsuficienteException("Falta Dinero");
 
-        Comprar(pago,tipoProducto,e);
+        Comprar(pago, tipoProducto, e);
         return true;
     }
+
+    /**
+     * Comprueba si el ID del producto existe.
+     *
+     * @param ID Identificador del producto.
+     * @return Tipo de producto.
+     * @throws Exception Excepción lanzada si el ID no existe.
+     */
     ProductList ComprobarID(int ID) throws Exception{
-        for (ProductList p:ProductList.values()) {
+        for (ProductList p : ProductList.values()) {
             if(p.getID() == ID)
                 return p;
         }
         throw new NoExisteID("No existe el ID: " +ID);
     }
 
+    /**
+     * Comprueba si hay suficiente dinero para comprar el producto.
+     *
+     * @param p Producto a comprar.
+     * @return Lista de monedas para el pago si el dinero es suficiente, de lo contrario null.
+     */
     ArrayList<Moneda> ComprobarDinero(ProductList p){
         ArrayList<Moneda> pago = new ArrayList<Moneda>();
         int precioProducto = p.getPrice().getValor();
@@ -62,6 +79,16 @@ public class Comprador {
         return null;
     }
 
+    /**
+     * Realiza la compra del producto.
+     *
+     * @param m Lista de monedas para el pago.
+     * @param c Producto a comprar.
+     * @param e Expendedor asociado.
+     * @throws PagoIncorrectoException Excepción lanzada si el pago es incorrecto.
+     * @throws PagoInsuficienteException Excepción lanzada si el pago es insuficiente.
+     * @throws NoHayProductoException Excepción lanzada si no hay producto disponible.
+     */
     public void Comprar(ArrayList<Moneda> m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         e.comprarProducto(m,c,bolsillo);
         Moneda aux = e.getVuelto();
@@ -72,23 +99,20 @@ public class Comprador {
     }
 
     /**
-     * metodo que devuelve el vuelto total en valor entero
+     * Obtiene el vuelto total en valor entero.
      *
-     * @return entero Vuelto total
+     * @return Vuelto total.
      */
     public int cuantoVuelto() {
-
         return vueltoTotal;
     }
 
     /**
-     * metodo que devuelve que producto se consumió
+     * Obtiene el sonido del producto consumido.
      *
-     * @return String que representa el producto consumido
+     * @return String que representa el producto consumido.
      */
     public String QueConsumiste() {
-
         return sonido;
-
     }
 }

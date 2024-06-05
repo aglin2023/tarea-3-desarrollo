@@ -1,41 +1,39 @@
 package logica;
 
 /**
- * Enumeracion que representa una lista de productos con sus precios
+ * Enumeración que representa una lista de productos con sus precios.
  */
-
 public enum ProductList {
     /**
-     * Representa el producto COCA con precio de 1000
+     * Representa el producto COCA con precio de 1000.
      */
     COCA(1000, 1001),
     /**
-     * Representa el producto SPRITE con precio de 300
+     * Representa el producto SPRITE con precio de 300.
      */
     SPRITE(300, 1002),
     /**
-     * Representa el producto FANTA con precio de 1200
+     * Representa el producto FANTA con precio de 1200.
      */
     FANTA(1200, 1003),
     /**
-     * Representa el producto SNICKERS con precio de 100
+     * Representa el producto SNICKERS con precio de 100.
      */
     SNICKERS(100, 1004),
     /**
-     * Representa el producto SUPER8 con precio de 100
+     * Representa el producto SUPER8 con precio de 100.
      */
     SUPER8(100, 1005);
 
-    /**
-     * constructor privado que asigna un precio a un producto
-     *
-     * @param price precio del producto, entero constante
-     */
-    final int ID;
+    private final int ID;
 
     ProductList(final int price, int ID) {
         m = new Moneda() {
-            /**@return regresa el valor del precio de un producto */
+            /**
+             * Obtiene el valor del precio del producto.
+             *
+             * @return Precio del producto.
+             */
             public int getValor() {
                 return price;
             }
@@ -43,20 +41,23 @@ public enum ProductList {
         this.ID = ID;
     }
 
-    /**
-     * variable que representa una moneda
-     */
-    private Moneda m;
+    /** Variable que representa una moneda. */
+    private final Moneda m;
 
     /**
-     * metodo que regresa una moneda con el precio del producto
+     * Obtiene una moneda con el precio del producto.
      *
-     * @return una moneda con el precio de un producto
+     * @return Moneda con el precio del producto.
      */
     public Moneda getPrice() {
         return m;
     }
 
+    /**
+     * Obtiene el identificador del producto.
+     *
+     * @return Identificador del producto.
+     */
     public int getID() {
         return ID;
     }
