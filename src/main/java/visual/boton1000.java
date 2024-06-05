@@ -13,7 +13,7 @@ public class boton1000 extends JButton{
     private JLabel valorLabel;
     public boton1000(String a, JLabel s, PanelMoneda p, ArrayList<Moneda>monedas){
         super(a);
-        setBounds(410,10, 200,80);
+        setBounds(420,10, 200,80);
         valorLabel= s;
         this.p= p;
         this.addActionListener(new ActionListener() {

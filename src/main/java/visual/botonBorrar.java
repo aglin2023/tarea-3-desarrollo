@@ -14,7 +14,7 @@ public class botonBorrar extends JButton {
 
     public botonBorrar(String a, JLabel s, PanelMoneda p, ArrayList<Moneda>monedas){
         super(a);
-        setBounds(600,10, 200,80);
+        setBounds(620,10, 200,80);
         this.p= p;
         valorLabel=s;
         this.addActionListener(new ActionListener() {
