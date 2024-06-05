@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public class boton500 extends JButton {
     private PanelMoneda p;
-    private PanelDigitos pd;
     private JLabel valorLabel;
 
     public boton500(String a, JLabel s, PanelMoneda p, ArrayList<Moneda> monedas) {

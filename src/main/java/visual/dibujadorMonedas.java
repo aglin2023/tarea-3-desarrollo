@@ -18,14 +18,18 @@ public class dibujadorMonedas extends JPanel {
      * lista de las monedas que se van a dibujar
      */
     private ArrayList<Moneda> m;
+    private int offsetX;
+    private int offsetY;
 
     /**
      * constructor de la clase
      *
      * @param m lista de monedas
      */
-    public dibujadorMonedas(ArrayList<Moneda> m) {
+    public dibujadorMonedas(ArrayList<Moneda> m, int offsetX, int offsetY) {
         this.m = m;
+        this.offsetX = offsetX;
+        this.offsetY = offsetY;
     }
 
     /**
@@ -57,8 +61,6 @@ public class dibujadorMonedas extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int offsetX = 80;
-        int offsetY = 250;
 
         try {
             moneda1 = ImageIO.read(new File("src/main/java/visual/Models/100-anverso.png"));

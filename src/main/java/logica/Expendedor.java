@@ -84,6 +84,10 @@ public class Expendedor {
         return llenaDeposito;
     }
 
+    public Deposito getMonederoExpendedor() {
+        return monederoExpendedor;
+    }
+
     public void rellenarDepositos() {
         if (coca.getArrayList().isEmpty()) {
             for (int i = 0; i < llenaDeposito; i++) {
@@ -148,22 +152,7 @@ public class Expendedor {
             throw new PagoIncorrectoException("No ingresaste moneda");
         }
 
-        int vuelto = 0;
-        for (int i = 0; i< m.size();i++) {
-            monederoExpendedor.addObject(m.get(i));
-            vuelto += m.get(i).getValor();
-        }
-        vuelto -= l.getPrice().getValor();
-
-        if (vuelto < 0) {
-            for (int i = 0; i< m.size();i++) {
-                monVu.addObject(m.get(i));
-            }
-            throw new PagoInsuficienteException("Le faltan: " + -1 * vuelto + " monedas");
-        }
-
         Producto p = null;
-
 
         if (l.equals(ProductList.COCA)) {
             p = coca.getObject();
@@ -182,12 +171,26 @@ public class Expendedor {
         }
 
         if (p == null) {
-            for (int i = 0; i< m.size();i++) {
+            for (int i = 0 ; i < m.size();i++) {
                 monVu.addObject(m.get(i));
+                total.add(i,m.get(i));
             }
             throw new NoHayProductoException("No hay " + l);
         }
 
+        int vuelto = 0;
+        for (int i = 0; i < m.size();i++) {
+            monederoExpendedor.addObject(m.get(i));
+            vuelto += m.get(i).getValor();
+        }
+        vuelto -= l.getPrice().getValor();
+
+        if (vuelto < 0) {
+            for (int i = 0; i< m.size();i++) {
+                monVu.addObject(m.get(i));
+            }
+            throw new PagoInsuficienteException("Le faltan: " + -1 * vuelto + " monedas");
+        }
 
         int cant_monedas100 = vuelto / 100;
         for (int i = 0; i < cant_monedas100; i++) {

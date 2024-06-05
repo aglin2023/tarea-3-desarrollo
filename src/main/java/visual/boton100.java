@@ -22,11 +22,11 @@ public class boton100 extends JButton {
     private final JLabel valorLabel;
 
     /**
-     *constructor de la clase para crear un boton
+     * constructor de la clase para crear un boton
      *
-     * @param a el texto del boton
-     * @param s la etiqueta que muestra el valor total ingresado
-     * @param p el panel donde se muestra las monedas y donde se ingresa
+     * @param a       el texto del boton
+     * @param s       la etiqueta que muestra el valor total ingresado
+     * @param p       el panel donde se muestra las monedas y donde se ingresa
      * @param monedas lista de monedas en arraylist
      */
 
