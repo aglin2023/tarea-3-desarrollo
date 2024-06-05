@@ -34,10 +34,10 @@ public class JPanelComprador extends JPanel {
     }
 
     public void MandarSolicitudCompra(int ID) throws Exception{
-        logicaComprador.ComprobarSolicitud(ID,new Expendedor(4));
+        logicaComprador.ComprobarSolicitud(ID,logicaExpendedor);
     }
 
-    public void SetExpendedor(Expendedor e) {
+    public void setExpendedor(Expendedor e) {
         logicaExpendedor = e;
     }
 

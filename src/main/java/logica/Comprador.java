@@ -38,7 +38,7 @@ public class Comprador {
     }
     ProductList ComprobarID(int ID) throws Exception{
         for (ProductList p:ProductList.values()) {
-            if(p.getSerie() == ID)
+            if(p.getID() == ID)
                 return p;
         }
         throw new NoExisteID("No existe el ID: " +ID);

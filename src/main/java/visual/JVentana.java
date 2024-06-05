@@ -1,5 +1,6 @@
 package visual;
 
+import logica.Comprador;
 import logica.Expendedor;
 
 import javax.swing.*;
@@ -8,8 +9,7 @@ public class JVentana extends JFrame {
     private JPanelPrincipal panelPrincipal;
 
     public JVentana() {
-        Expendedor expendedor = new Expendedor(6);
-        panelPrincipal = new JPanelPrincipal(expendedor);
+        panelPrincipal = new JPanelPrincipal();
         this.setTitle("Expendedor");
         this.setSize(1400, 1000);
         this.setResizable(false);

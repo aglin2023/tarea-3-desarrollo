@@ -28,8 +28,8 @@ public class PanelMoneda extends JPanel {
     /**
      * constructor de la clase que crea el panel
      */
-    public PanelMoneda() {
-        cajitaMonedas= new ArrayList<Moneda>();
+    public PanelMoneda(ArrayList<Moneda> m) {
+        cajitaMonedas = m;
         setSize(300, 200);
 
         setLayout(null);

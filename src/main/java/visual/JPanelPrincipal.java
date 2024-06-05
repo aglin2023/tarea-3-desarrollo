@@ -1,5 +1,6 @@
 package visual;
 
+import logica.Comprador;
 import logica.Expendedor;
 
 import javax.swing.*;
@@ -9,8 +10,11 @@ public class JPanelPrincipal extends JPanel {
     private JPanelExpendedor panelExpendedor;
     private JPanelDepositoUnico panelDepositoUnico;
     private JPanelPrecios panelPrecios;
+    private JPanelComprador panelComprador;
 
-    public JPanelPrincipal(Expendedor expendedor){
+    public JPanelPrincipal(){
+        Expendedor expendedor = new Expendedor(6);
+
 //        this.setLayout(null);
 //        this.setPreferredSize(new Dimension(1400,1000));
         GridBagLayout layout = new GridBagLayout();
@@ -60,6 +64,16 @@ public class JPanelPrincipal extends JPanel {
 //      panelExpendedor.setBounds(0, 0, 700, 750);
 //      this.add(panelExpendedor);
 
+        panelComprador.setExpendedor(expendedor);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.weightx = 0;
+        gbc.weighty = 0;
+        gbc.ipadx = 350;
+        gbc.ipady = 0;
+        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        this.add(panelComprador);
 
     }
 

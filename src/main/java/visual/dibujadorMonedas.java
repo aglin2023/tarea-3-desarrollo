@@ -60,9 +60,9 @@ public class dibujadorMonedas extends JPanel {
         super.paintComponent(g);
 
         try{
-            moneda1= ImageIO.read(new File("src/main/java/visual/100-anverso.png"));
-            moneda2= ImageIO.read(new File("src/main/java/visual/moneda de 500.png"));
-            moneda3= ImageIO.read(new File("src/main/java/visual/1000-anverso.jpg"));
+            moneda1= ImageIO.read(new File("src/main/java/visual/Models/100-anverso.png"));
+            moneda2= ImageIO.read(new File("src/main/java/visual/Models/moneda de 500.png"));
+            moneda3= ImageIO.read(new File("src/main/java/visual/Models/1000-anverso.jpg"));
             for(int i=0; i<=m.size(); i++){
 
                 if(m.get(i).getValor()==100){
