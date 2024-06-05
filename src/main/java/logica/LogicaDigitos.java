@@ -100,7 +100,7 @@ public class LogicaDigitos implements ActionListener{
 
 			procesandoCompra = false;
 			resetPantalla();
-			pantalla.setText("SOLICITANDO...");
+			pantalla.setText("COMPRADO!");
     }
 
     public void resetPantalla(){

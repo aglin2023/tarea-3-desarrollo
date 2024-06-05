@@ -143,7 +143,7 @@ public class Expendedor {
      * @throws PagoIncorrectoException   si no se entrega una moneda o moneda es un null
      * @throws NoHayProductoException    si el producto que se quiere comprar, no está disponible
      */
-    public void comprarProducto(ArrayList<Moneda> m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
+    public void comprarProducto(ArrayList<Moneda> m, ProductList l,ArrayList<Moneda> total) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
         if (m == null) {
             throw new PagoIncorrectoException("No ingresaste moneda");
         }
@@ -191,7 +191,9 @@ public class Expendedor {
 
         int cant_monedas100 = vuelto / 100;
         for (int i = 0; i < cant_monedas100; i++) {
-            monVu.addObject(new Moneda100());
+            Moneda aux = new Moneda100();
+            monVu.addObject(aux);
+            total.add(aux);
         }
 
         productoComprado = p;
