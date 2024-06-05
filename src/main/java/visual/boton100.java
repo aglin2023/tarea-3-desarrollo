@@ -27,7 +27,7 @@ public class boton100 extends JButton {
      * @param a el texto del boton
      * @param s la etiqueta que muestra el valor total ingresado
      * @param p el panel donde se muestra las monedas y donde se ingresa
-     * @param monedas lista de monedas en arraylist
+     * @param monedas lista de monedas donde se ingresa la moneda de 100
      */
 
     public boton100(String a, JLabel s, PanelMoneda p, ArrayList<Moneda> monedas) {

@@ -18,15 +18,19 @@ public class Comprador {
     private int vueltoTotal;
 
     /**
-     * constructor que utiliza de parametros monedas, la lista de productos y el expendedor
-     *
-     * @throws PagoIncorrectoException   puede lanzar esta excepcion si se paga con una moneda con valor menor a 0
-     * @throws PagoInsuficienteException puede lanzar esta excepcion si se paga con una moneda de valor menor al producto
-     * @throws NoHayProductoException    puede lanzar esta excepcion si no hay producto disponible en el deposito al comprar
+     * constructor que utiliza la lista de monedas
      */
     public Comprador(ArrayList<Moneda> m){
         bolsillo = m;
     }
+
+    /**
+     * metodo que comprueba la solicitud de la compra
+     * @param ID id del producto
+     * @param e expendedor
+     * @return true si se realiza la compra correctamente
+     * @throws Exception Puede lanzar varias excepciones relacionadas con el pago y la disponibilidad del producto.
+     */
     public boolean ComprobarSolicitud(int ID,Expendedor e) throws Exception{
         ProductList tipoProducto = ComprobarID(ID);
         ArrayList<Moneda> pago = ComprobarDinero(tipoProducto);
@@ -36,6 +40,13 @@ public class Comprador {
         Comprar(pago,tipoProducto,e);
         return true;
     }
+
+    /**
+     * metodo para comprobar la id del producto
+     * @param ID id del producto
+     * @return el tipo de producto que corresponde a la id
+     * @throws Exception lanzar mensaje si no existe la id
+     */
     ProductList ComprobarID(int ID) throws Exception{
         for (ProductList p:ProductList.values()) {
             if(p.getID() == ID)
@@ -44,6 +55,11 @@ public class Comprador {
         throw new NoExisteID("No existe el ID: " +ID);
     }
 
+    /**
+     * metodo que comprueba si el dinero que se tiene permite compprar el producto
+     * @param p tipo de producto que se quiere comprar
+     * @return lista de monedas para pagar el producto
+     */
     ArrayList<Moneda> ComprobarDinero(ProductList p){
         ArrayList<Moneda> pago = new ArrayList<Moneda>();
         int precioProducto = p.getPrice().getValor();
@@ -62,6 +78,15 @@ public class Comprador {
         return null;
     }
 
+    /**
+     *metodo que realiza la compra del producto
+     * @param m lista de monedas para pagar
+     * @param c tipo de producto que se quiera comprar
+     * @param e expendedor
+     * @throws PagoIncorrectoException lanza un error si el pago es incorrecto
+     * @throws PagoInsuficienteException lanza un error si el pago es insuficiente
+     * @throws NoHayProductoException lanza un error si no hay producto para comprar
+     */
     public void Comprar(ArrayList<Moneda> m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
         e.comprarProducto(m,c,bolsillo);
         Moneda aux = e.getVuelto();

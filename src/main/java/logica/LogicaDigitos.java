@@ -4,6 +4,9 @@ import visual.PanelDigitos;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * clase que maneja la logica del ingreso de digitos para la compra de un producto
+ */
 public class LogicaDigitos implements ActionListener{
 
 	private PanelDigitos panelDigitos;
@@ -12,13 +15,22 @@ public class LogicaDigitos implements ActionListener{
     private JLabel pantalla;
 
     boolean procesandoCompra = false;
-    
-    public LogicaDigitos(JLabel l, PanelDigitos p){
+
+	/**
+	 * constructor de la clase
+	 * @param l jlabel que muestra la entrada de digitos
+	 * @param p variable que contiene la interfaz de entrada
+	 */
+	public LogicaDigitos(JLabel l, PanelDigitos p){
 		panelDigitos = p;
 		pantalla = l;
 		l.setText("ID DEL PRODUCTO:");
     }
 
+	/**
+	 * metodo que maneja los eventos de accion
+	 * @param e evento que se realiza al hacer un clic en un boton
+	 */
     public void actionPerformed(ActionEvent e){
 	if(procesandoCompra)
 	    return;
@@ -38,6 +50,10 @@ public class LogicaDigitos implements ActionListener{
 	}
     }
 
+	/**
+	 * metodo que maneja la accion de hacer clic sobre un digito
+	 * @param i el digito que se presionó
+	 */
     public void DigitoClickeado(String i)
     {
 	if(actualPointer >= digits_pantalla.length){
@@ -55,6 +71,9 @@ public class LogicaDigitos implements ActionListener{
 	pantalla.setText(display());
     }
 
+	/**
+	 * metodo que permite eliminar los digitos presionados
+	 */
     public void DeleteDigit(){
 
 	digits_pantalla[actualPointer] = "";
@@ -64,6 +83,9 @@ public class LogicaDigitos implements ActionListener{
 	pantalla.setText(display());
     }
 
+	/**
+	 * metodo que permite la accion de un boton de corfirmar los digitos ingresados
+	 */
     public void OkButton() {
 		for (int i = 0; i < digits_pantalla.length; i++) {
 			if (digits_pantalla[i].equals("")) {
@@ -103,6 +125,9 @@ public class LogicaDigitos implements ActionListener{
 			pantalla.setText("COMPRADO!");
     }
 
+	/**
+	 * metodo que reinicia la pantalla de los digitos
+	 */
     public void resetPantalla(){
 	for (int i = 0;i< digits_pantalla.length;i++) {
 	    actualPointer = 0;
@@ -110,6 +135,10 @@ public class LogicaDigitos implements ActionListener{
 	}
     }
 
+	/**
+	 * metodo que muestra los digitos ingresados en una pantalla
+	 * @return string con los digitos ingresados
+	 */
     public String display(){
 	String aux = "";
 	int margen = 4;
@@ -123,6 +152,11 @@ public class LogicaDigitos implements ActionListener{
 
 	return aux;
     }
+
+	/**
+	 * metodo que obtiene el id ingresado actualmente
+	 * @return el id ingresado en forma de int
+	 */
 	public  int getActualID(){
 		String aux = "";
 		for (int i = 0; i < digits_pantalla.length;i++)

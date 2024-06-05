@@ -18,7 +18,10 @@ public class Sprite extends Bebida {
         return "sprite";
     }
 
-
+    /**
+     * metodo para regresar el precio de la sprite
+     * @return regresa el valor del producto
+     */
     public static int getPrice() {
         return ProductList.SPRITE.getPrice().getValor();
     }

@@ -5,7 +5,8 @@ package logica;
  */
 public abstract class Bebida extends Producto {
     /**
-     * constructor de bebida, no devuelve nada
+     * constructor de la clase
+     * @param serie serie de la bebida
      */
     public Bebida(int serie) {
         super(serie);

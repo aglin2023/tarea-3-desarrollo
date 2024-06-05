@@ -38,10 +38,18 @@ public class Deposito<T> {
         return null;
     }
 
+    /**
+     *metodo que devuelve la lista de productos en un deposito
+     * @return lista de productos en el deposito
+     */
     public ArrayList<T> getArrayList() {
         return deposito;
     }
 
+    /**
+     * metodo que verifica si un deposito tiene productos
+     * @return regresa true si el deposito está vacio, si no, regresa false
+     */
     public boolean tieneProductos() {
         return !deposito.isEmpty();
     }

@@ -18,7 +18,10 @@ public class Super8 extends Dulce {
         return "super8";
     }
 
-
+    /**
+     * metodo para regresar el precio del super 8
+     * @return regresa el valor del producto
+     */
     public static int getPrice() {
         return ProductList.SUPER8.getPrice().getValor();
     }

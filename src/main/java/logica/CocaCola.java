@@ -18,7 +18,10 @@ public class CocaCola extends Bebida {
         return "Coca";
     }
 
-
+    /**
+     * metodo estatico que regresa el precio del producto cocacola
+     * @return precio de la cocacola
+     */
     public static int getPrice() {
         return ProductList.COCA.getPrice().getValor();
     }
