@@ -1,5 +1,8 @@
 package logica;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 /**
  * clase que representa el funcionamiento de un expendedor de productos
  */
@@ -143,17 +146,22 @@ public class Expendedor {
      * @throws PagoIncorrectoException   si no se entrega una moneda o moneda es un null
      * @throws NoHayProductoException    si el producto que se quiere comprar, no está disponible
      */
-    public void comprarProducto(Moneda m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
+    public void comprarProducto(ArrayList<Moneda> m, ProductList l) throws PagoInsuficienteException, PagoIncorrectoException, NoHayProductoException {
         if (m == null) {
             throw new PagoIncorrectoException("No ingresaste moneda");
         }
 
-        monederoExpendedor.addObject(m);
-        int vuelto = m.compareTo(l.getPrice());
-
+        int vuelto = 0;
+        for (int i = 0; i< m.size();i++) {
+            monederoExpendedor.addObject(m.get(i));
+            vuelto += m.get(i).getValor();
+        }
+        vuelto -= l.getPrice().getValor();
 
         if (vuelto < 0) {
-            monVu.addObject(m);
+            for (int i = 0; i< m.size();i++) {
+                monVu.addObject(m.get(i));
+            }
             throw new PagoInsuficienteException("Le faltan: " + -1 * vuelto + " monedas");
         }
 
@@ -177,7 +185,9 @@ public class Expendedor {
         }
 
         if (p == null) {
-            monVu.addObject(m);
+            for (int i = 0; i< m.size();i++) {
+                monVu.addObject(m.get(i));
+            }
             throw new NoHayProductoException("No hay " + l);
         }
 
