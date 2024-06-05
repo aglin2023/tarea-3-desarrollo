@@ -24,8 +24,4 @@ public class Fanta extends Bebida {
         return ProductList.FANTA.getPrice().getValor();
     }
 
-    @Override
-    public int getSerie() {
-        return ProductList.FANTA.serie;
-    }
 }

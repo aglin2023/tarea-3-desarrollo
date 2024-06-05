@@ -1,7 +1,7 @@
 package logica;
 
 /**
- * clase que representa una de las distintas bebidas, subclase de Bebida
+ * Clase que representa una de las distintas bebidas, subclase de Bebida
  */
 public class CocaCola extends Bebida {
     /**
@@ -23,8 +23,4 @@ public class CocaCola extends Bebida {
         return ProductList.COCA.getPrice().getValor();
     }
 
-    @Override
-    public int getSerie() {
-        return ProductList.COCA.serie;
-    }
 }

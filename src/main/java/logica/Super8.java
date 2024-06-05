@@ -23,8 +23,4 @@ public class Super8 extends Dulce {
         return ProductList.SUPER8.getPrice().getValor();
     }
 
-    @Override
-    public int getSerie() {
-        return ProductList.SUPER8.serie;
-    }
 }

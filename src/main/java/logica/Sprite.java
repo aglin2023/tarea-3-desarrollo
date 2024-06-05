@@ -23,8 +23,4 @@ public class Sprite extends Bebida {
         return ProductList.SPRITE.getPrice().getValor();
     }
 
-    @Override
-    public int getSerie() {
-        return ProductList.SPRITE.serie;
-    }
 }

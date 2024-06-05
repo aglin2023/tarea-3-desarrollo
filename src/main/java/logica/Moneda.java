@@ -1,7 +1,5 @@
 package logica;
 
-import java.awt.*;
-
 /**
  * clase de tipo abstracto que le otorga las caractaristicas a las diferentes monedas
  * en la que se utilizo la interfaz Comparable<moneda> para utilizar el compareTo

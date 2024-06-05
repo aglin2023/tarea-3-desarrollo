@@ -80,42 +80,38 @@ public class Expendedor {
 
     }
 
-    public int getLlenaDeposito(){
+    public int getLlenaDeposito() {
         return llenaDeposito;
     }
 
     public void rellenarDepositos() {
-        if(coca.getArrayList().isEmpty()) {
+        if (coca.getArrayList().isEmpty()) {
             for (int i = 0; i < llenaDeposito; i++) {
-                coca.addObject(new CocaCola(ProductList.COCA.serie));
+                coca.addObject(new CocaCola(100 + i));
             }
         }
-        if(sprite.getArrayList().isEmpty()) {
+        if (sprite.getArrayList().isEmpty()) {
             for (int i = 0; i < llenaDeposito; i++) {
-                sprite.addObject(new Sprite(ProductList.SPRITE.serie));
+                sprite.addObject(new Sprite(200 + i));
             }
         }
-        if(fanta.getArrayList().isEmpty()) {
+        if (fanta.getArrayList().isEmpty()) {
             for (int i = 0; i < llenaDeposito; i++) {
-                fanta.addObject(new Fanta(ProductList.SPRITE.serie));
+                fanta.addObject(new Fanta(300 + i));
             }
         }
-        if(super8.getArrayList().isEmpty()) {
+        if (super8.getArrayList().isEmpty()) {
             for (int i = 0; i < llenaDeposito; i++) {
-                super8.addObject(new Super8(ProductList.SUPER8.serie));
+                super8.addObject(new Super8(400 + i));
             }
         }
-        if(snickers.getArrayList().isEmpty()) {
+        if (snickers.getArrayList().isEmpty()) {
             for (int i = 0; i < llenaDeposito; i++) {
-                snickers.addObject(new Snickers(ProductList.SNICKERS.serie));
-            }
-        }
-        if(sprite.getArrayList().isEmpty()) {
-            for (int i = 0; i < llenaDeposito; i++) {
-                sprite.addObject(new Snickers(ProductList.SNICKERS.serie));
+                snickers.addObject(new Snickers(500 + i));
             }
         }
     }
+
     public Deposito<Producto> getDeposito(ProductList producto) {
         switch (producto) {
             case COCA:
@@ -132,23 +128,8 @@ public class Expendedor {
                 throw new IllegalArgumentException("Producto no válido");
         }
     }
-    public int getSerieProducto(ProductList producto) {
-        switch (producto) {
-            case COCA:
-                return ProductList.COCA.getSerie();
-            case SPRITE:
-                return ProductList.SPRITE.getSerie();
-            case FANTA:
-                return ProductList.FANTA.getSerie();
-            case SNICKERS:
-                return ProductList.SNICKERS.getSerie();
-            case SUPER8:
-                return ProductList.SUPER8.getSerie();
-            default:
-                return -1;
-        }
-    }
-    public Deposito getDepositoUnitarioProductoComprado(){
+
+    public Deposito getDepositoUnitarioProductoComprado() {
         return depositoUnitarioProductoComprado;
     }
 
@@ -218,9 +199,5 @@ public class Expendedor {
      */
     public Moneda getVuelto() {
         return monVu.getObject();
-    }
-
-    public void setProductoCompradoNULL() {
-        productoComprado = null;
     }
 }

@@ -1,26 +1,25 @@
 package logica;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * clase que representa un deposito de tipo generico para almacenar objetos de cualquier tipo
+ * Clase que representa un deposito de tipo generico para almacenar objetos de cualquier tipo
  *
  * @param <T> un objeto de cualquier tipo para almacenar
  */
-public class Deposito<T > {
+public class Deposito<T> {
 
     private ArrayList<T> deposito;
 
     /**
-     * constructor que inicia un nuevo deposito
+     * Constructor que inicia un nuevo deposito
      */
     public Deposito() {
         deposito = new ArrayList<T>();
     }
 
     /**
-     * metodo de tipo void que permite que un producto se almacene en un deposito
+     * Metodo de tipo void que permite que un producto se almacene en un deposito
      *
      * @param producto el objeto que se va a almacenar dentro de un deposito
      */
@@ -29,7 +28,7 @@ public class Deposito<T > {
     }
 
     /**
-     * metodo que obtiene y borra el un objeto del deposito si este aun no está vacio
+     * metodo que obtiene y borra él un objeto del deposito si este aun no está vacio
      *
      * @return el objeto que está primero actualmente en el deposito, si está vacio, devuelve null
      */

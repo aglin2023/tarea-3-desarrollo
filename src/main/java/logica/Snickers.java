@@ -23,8 +23,4 @@ public class Snickers extends Dulce {
         return ProductList.SNICKERS.getPrice().getValor();
     }
 
-    @Override
-    public int getSerie() {
-        return ProductList.SNICKERS.serie;
-    }
 }
