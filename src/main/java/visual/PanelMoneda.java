@@ -38,19 +38,19 @@ public class PanelMoneda extends JPanel {
 
 
         boton100 b1 = new boton100("100$", valorLabel, this, cajitaMonedas);
-        b1.setBounds(0, 350, 100, 100);
+        b1.setBounds(0, 350, 100, 80);
         add(b1);
 
         boton500 b2 = new boton500("500$", valorLabel, this, cajitaMonedas);
-        b2.setBounds(0, 450, 100, 100);
+        b2.setBounds(0, 450, 100, 80);
         add(b2);
 
         boton1000 b3 = new boton1000("1000$", valorLabel, this, cajitaMonedas);
-        b3.setBounds(0, 550, 100, 100);
+        b3.setBounds(0, 550, 100, 80);
         add(b3);
 
-        botonBorrar b4 = new botonBorrar("borrar monedas", valorLabel, this, cajitaMonedas);
-        b4.setBounds(0, 650, 100, 100);
+        botonBorrar b4 = new botonBorrar("LIMPIAR", valorLabel, this, cajitaMonedas);
+        b4.setBounds(0, 650, 100, 80);
         add(b4);
 
         add(valorLabel);

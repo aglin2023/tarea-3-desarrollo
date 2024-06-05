@@ -29,9 +29,11 @@ public class JPanelDepositoUnico extends JPanel {
         this.removeAll();
         Deposito<Producto> depositoUnitario = expendedor.getDepositoUnitarioProductoComprado();
         if (!depositoUnitario.getArrayList().isEmpty()) {
+            agregarImagen("src/main/java/visual/Models/PuertaAbierta.png", 230, 15, 250, 250);
             Producto producto = depositoUnitario.getArrayList().get(0);
             String rutaImagen = "src/main/java/visual/Models/" + producto.consumido().toLowerCase() + ".png";
-            agregarImagen(rutaImagen, 280, 35, 120, 150);
+            agregarImagen(rutaImagen, 280, 35, 120, 120);
+            agregarImagen("src/main/java/visual/Models/DetrasProductoZona.png", 230, 15, 250, 250);
         }
         revalidate();
         repaint();
@@ -45,7 +47,6 @@ public class JPanelDepositoUnico extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.BLACK);
-        g.drawRect(280, 40, 115, 140);
+        agregarImagen("src/main/java/visual/Models/PuertaCerrada.png", 230, 15, 250, 250);
     }
 }
