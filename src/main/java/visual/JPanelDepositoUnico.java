@@ -13,7 +13,7 @@ public class JPanelDepositoUnico extends JPanel {
     public JPanelDepositoUnico(Expendedor expendedor) {
         this.expendedor = expendedor;
         this.setLayout(null);
-        this.setPreferredSize(new Dimension(10, 10));
+       // this.setPreferredSize(new Dimension(700, 250));
         this.setBackground(Color.DARK_GRAY);
 
         //Prueba, esto se debe llamar al momento de comprar el producto

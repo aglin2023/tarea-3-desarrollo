@@ -4,8 +4,6 @@ import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +25,7 @@ public class JPanelExpendedor extends JPanel {
         this.expendedorLabel = new JLabel();
         this.expendedor = expendedor;
         this.depositoUnico = panelDepositoUnico;
-        this.setPreferredSize(new Dimension(700, 850));
+        //this.setPreferredSize(new Dimension(700, 850));
         imagenCords = new HashMap<>();
         this.productos = new ProductList[]{
                 ProductList.COCA,
@@ -44,8 +42,6 @@ public class JPanelExpendedor extends JPanel {
 
         botonSacar = new BotonSacar(expendedor, panelDepositoUnico);
         botonSacar.setBounds(0,0,700,250);
-
-
         cargarPanel();
     }
 
