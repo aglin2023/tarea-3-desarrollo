@@ -3,7 +3,6 @@ package visual;
 import logica.Expendedor;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class JVentana extends JFrame {
     private JPanelPrincipal panelPrincipal;
@@ -21,7 +20,7 @@ public class JVentana extends JFrame {
     }
 
     public static void main(String[] args) {
-        JVentana ventana = new JVentana();
+        new JVentana();
     }
 
 }

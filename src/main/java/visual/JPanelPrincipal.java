@@ -25,7 +25,7 @@ public class JPanelPrincipal extends JPanel {
         gbc.weighty = 0;
         gbc.ipadx = 700;
         gbc.ipady = 230;
-//        gbc.fill = GridBagConstraints.VERTICAL;
+     //   gbc.fill = GridBagConstraints.VERTICAL;
      //   gbc.anchor = GridBagConstraints.WEST;
         this.add(panelDepositoUnico,gbc);
 

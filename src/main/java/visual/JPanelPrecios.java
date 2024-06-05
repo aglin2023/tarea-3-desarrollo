@@ -64,7 +64,7 @@ public class JPanelPrecios extends JPanel {
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.drawRect(0,0,680,215);
+        g.drawRect(0,0,680,218);
 
     }
 
