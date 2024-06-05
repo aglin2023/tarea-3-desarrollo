@@ -1,8 +1,6 @@
 package visual;
 
-import logica.Deposito;
 import logica.Expendedor;
-import logica.Producto;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

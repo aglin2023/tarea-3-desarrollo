@@ -1,8 +1,5 @@
 package visual;
 
-import logica.Comprador;
-import logica.Expendedor;
-
 import javax.swing.*;
 
 public class JVentana extends JFrame {

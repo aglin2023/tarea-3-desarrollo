@@ -2,12 +2,7 @@ package logica;
 import visual.PanelDigitos;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.*;
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.util.*;
 
 public class LogicaDigitos implements ActionListener{
 
@@ -57,7 +52,7 @@ public class LogicaDigitos implements ActionListener{
 	}
 
 	digits_pantalla[actualPointer] = i;
-	pantalla.setText(Display());
+	pantalla.setText(display());
     }
 
     public void DeleteDigit(){
@@ -66,14 +61,14 @@ public class LogicaDigitos implements ActionListener{
 
 	if(actualPointer > 0)
 	    actualPointer--;
-	pantalla.setText(Display());
+	pantalla.setText(display());
     }
 
     public void OkButton() {
 		for (int i = 0; i < digits_pantalla.length; i++) {
 			if (digits_pantalla[i].equals("")) {
 				pantalla.setText("ERROR... REINGRESAR:");
-				ResetPantalla();
+				resetPantalla();
 				return;
 			}
 		}
@@ -85,31 +80,37 @@ public class LogicaDigitos implements ActionListener{
 			}
 			catch (NoExisteID e) {
 				pantalla.setText("NO EXISTE ID");
-				ResetPantalla();
+				resetPantalla();
 				return;
 			}
 			catch (PagoInsuficienteException e)
 			{
 				pantalla.setText("PAGO INSUFICIENTE");
-				ResetPantalla();
+				resetPantalla();
+				return;
+			}
+			catch (NoHayProductoException e) {
+				pantalla.setText("NO HAY PRODUCTO");
+				resetPantalla();
 				return;
 			}
 			catch (Exception e) {
-				System.out.println(e.toString());
+				System.out.println(e);
 			}
 
-			procesandoCompra = true;
+			procesandoCompra = false;
+			resetPantalla();
 			pantalla.setText("SOLICITANDO...");
     }
 
-    public void ResetPantalla(){
+    public void resetPantalla(){
 	for (int i = 0;i< digits_pantalla.length;i++) {
 	    actualPointer = 0;
 	    digits_pantalla[i] = "";
 	}
     }
 
-    public String Display(){
+    public String display(){
 	String aux = "";
 	int margen = 4;
 

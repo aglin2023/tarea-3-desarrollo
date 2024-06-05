@@ -1,6 +1,9 @@
 package visual;
 
-import logica.*;
+import logica.Deposito;
+import logica.Expendedor;
+import logica.ProductList;
+import logica.Producto;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,9 +21,7 @@ public class JPanelExpendedor extends JPanel {
     private JButton botonSacar;
 
 
-
-
-    public JPanelExpendedor(Expendedor expendedor, JPanelDepositoUnico panelDepositoUnico){
+    public JPanelExpendedor(Expendedor expendedor, JPanelDepositoUnico panelDepositoUnico) {
         this.setLayout(null);
         this.expendedorLabel = new JLabel();
         this.expendedor = expendedor;
@@ -35,17 +36,17 @@ public class JPanelExpendedor extends JPanel {
                 ProductList.SUPER8
         };
 
-       //Agrego botones
+        //Agrego botones
         botonRellenar = new BotonRellenar(expendedor, this);
-        botonRellenar.setBounds(0,0,700,750);
+        botonRellenar.setBounds(0, 0, 700, 750);
 
 
         botonSacar = new BotonSacar(expendedor, panelDepositoUnico);
-        botonSacar.setBounds(0,0,700,250);
+        botonSacar.setBounds(0, 0, 700, 250);
         cargarPanel();
     }
 
-    public void cargarPanel(){
+    public void cargarPanel() {
         // La idea aqui es cargar el panel cuando se aplique algun boton, cambio en ventana, etc...
         this.removeAll();
         cargarImagenes();
@@ -53,14 +54,15 @@ public class JPanelExpendedor extends JPanel {
         agregarImagenExpendedor();
         this.add(botonRellenar);
         depositoUnico.add(botonSacar);
+
         this.repaint();
     }
 
-    public void agregarImagenExpendedor(){
+    public void agregarImagenExpendedor() {
         ImageIcon imagenExpendedor = new ImageIcon("src/main/java/visual/Models/expendedor.png");
         ImageIcon nuevaImagen = this.nuevoTamañoImagen(imagenExpendedor, 700, 1000);
         expendedorLabel = new JLabel(nuevaImagen);
-        expendedorLabel.setBounds(0,0, nuevaImagen.getIconWidth(), nuevaImagen.getIconHeight());
+        expendedorLabel.setBounds(0, 0, nuevaImagen.getIconWidth(), nuevaImagen.getIconHeight());
         add(expendedorLabel);
     }
 
@@ -80,7 +82,7 @@ public class JPanelExpendedor extends JPanel {
                 int llenaDeposito = expendedor.getLlenaDeposito();
                 int tamañoDeposito = expendedor.getDeposito(productos[i]).getArrayList().size();
                 int x = 0;
-                for(int j = 0; j < llenaDeposito && j < 8 && j < tamañoDeposito; j++) {
+                for (int j = 0; j < llenaDeposito && j < 8 && j < tamañoDeposito; j++) {
                     //Agregar un aunmento en x para ir metiendo mas objetos segun la cantidad de productos
                     crearImagen(productos[i].name().toLowerCase() + ".png", coordenadas[i][0] + x, coordenadas[i][1], coordenadas[i][2], coordenadas[i][3]);
                     x += 81;

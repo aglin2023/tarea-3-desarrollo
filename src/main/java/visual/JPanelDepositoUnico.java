@@ -13,7 +13,7 @@ public class JPanelDepositoUnico extends JPanel {
     public JPanelDepositoUnico(Expendedor expendedor) {
         this.expendedor = expendedor;
         this.setLayout(null);
-       // this.setPreferredSize(new Dimension(700, 250));
+        // this.setPreferredSize(new Dimension(700, 250));
         this.setBackground(Color.DARK_GRAY);
 
         //Prueba, esto se debe llamar al momento de comprar el producto
@@ -40,6 +40,7 @@ public class JPanelDepositoUnico extends JPanel {
         revalidate();
         repaint();
     }
+
     public ImageIcon nuevoTamañoImagen(ImageIcon icon, int ancho, int alto) {
         Image img = icon.getImage().getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
         return new ImageIcon(img);

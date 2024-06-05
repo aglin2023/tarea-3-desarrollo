@@ -60,9 +60,6 @@ public class Expendedor {
         this.depositoUnitarioProductoComprado = new Deposito<Producto>();
         this.llenaDeposito = llenaDeposito;
 
-        //prueba
-        productoComprado = new Snickers(106);
-        depositoUnitarioProductoComprado.addObject(productoComprado);
 
         coca = new Deposito<>();
         sprite = new Deposito<>();
@@ -74,7 +71,7 @@ public class Expendedor {
             coca.addObject(new CocaCola(100 + i));
             sprite.addObject(new Sprite(200 + i));
             fanta.addObject(new Fanta(300 + i));
-            // snickers.addObject(new Snickers(400 + i));
+            snickers.addObject(new Snickers(400 + i));
             super8.addObject(new Super8(500 + i));
         }
 
