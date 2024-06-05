@@ -11,7 +11,7 @@ public class LogicaDigitos implements ActionListener{
     private String[] digits_pantalla = {"","","",""};
     private JLabel pantalla;
 
-    boolean procesandoCompra = false;
+    public static boolean  procesandoCompra = false;
     
     public LogicaDigitos(JLabel l, PanelDigitos p){
 		panelDigitos = p;
@@ -77,6 +77,7 @@ public class LogicaDigitos implements ActionListener{
 			*/
 			try {
 				panelDigitos.getPanelComprador().MandarSolicitudCompra(getActualID());
+
 			}
 			catch (NoExisteID e) {
 				pantalla.setText("NO EXISTE ID");
@@ -95,7 +96,15 @@ public class LogicaDigitos implements ActionListener{
 				return;
 			}
 			catch (Exception e) {
-				System.out.println(e);
+				if(e.getMessage().equals("Primero saque el producto anterior"))
+				{
+					pantalla.setText("PRIMERO SAQUE EL PRODUCTO ANTERIOR");
+					procesandoCompra = true;
+					resetPantalla();
+					return;
+				}
+
+				return;
 			}
 
 			procesandoCompra = false;

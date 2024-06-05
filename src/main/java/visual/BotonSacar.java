@@ -1,6 +1,7 @@
 package visual;
 
 import logica.Expendedor;
+import logica.LogicaDigitos;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,10 @@ public class BotonSacar extends JButton {
         this.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (expendedor.getDepositoUnitarioProductoComprado().getArrayList().size() > 0) {
+                    expendedor.getDepositoUnitarioProductoComprado().getArrayList().remove(0);
+                    LogicaDigitos.procesandoCompra = false;
+                }
                 BotonSacar.this.panelDepositoUnico.actualizarImagen();
             }
         });
