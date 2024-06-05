@@ -63,7 +63,7 @@ public class Comprador {
     }
 
     public void Comprar(ArrayList<Moneda> m, ProductList c, Expendedor e) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {
-        e.comprarProducto(m.remove(0),c);
+        e.comprarProducto(m,c);
         Moneda aux = e.getVuelto();
         while (aux != null) {
             vueltoTotal += aux.getValor();
