@@ -13,11 +13,7 @@ public class JPanelDepositoUnico extends JPanel {
     public JPanelDepositoUnico(Expendedor expendedor) {
         this.expendedor = expendedor;
         this.setLayout(null);
-        // this.setPreferredSize(new Dimension(700, 250));
         this.setBackground(Color.DARK_GRAY);
-
-        //Prueba, esto se debe llamar al momento de comprar el producto
-        // actualizarImagen();
     }
 
     public void agregarImagen(String rutaImagen, int x, int y, int ancho, int alto) {
@@ -33,7 +29,7 @@ public class JPanelDepositoUnico extends JPanel {
         this.removeAll();
         Deposito<Producto> depositoUnitario = expendedor.getDepositoUnitarioProductoComprado();
         if (!depositoUnitario.getArrayList().isEmpty()) {
-            Producto producto = depositoUnitario.getObject();
+            Producto producto = depositoUnitario.getArrayList().get(0);
             String rutaImagen = "src/main/java/visual/Models/" + producto.consumido().toLowerCase() + ".png";
             agregarImagen(rutaImagen, 280, 35, 120, 150);
         }
