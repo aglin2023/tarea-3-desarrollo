@@ -5,6 +5,7 @@ package logica;
  */
 public abstract class Producto {
     private int serie;
+
     /**
      * constructor de Producto, no devuelve nada
      */
@@ -17,5 +18,4 @@ public abstract class Producto {
      */
     public abstract String consumido();
 
-    public abstract int getSerie();
 }
