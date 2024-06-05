@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class ActionListenerMonederoExpendedor implements ActionListener {
-    private JPanelExpendedor panelExpendedor;
-    private Expendedor expendedor;
-    private PanelMoneda panelMoneda;
+    private final JPanelExpendedor panelExpendedor;
+    private final Expendedor expendedor;
+    private final PanelMoneda panelMoneda;
 
     public ActionListenerMonederoExpendedor(Expendedor expendedor, JPanelExpendedor panelExpendedor, PanelMoneda panelMoneda) {
         this.expendedor = expendedor;

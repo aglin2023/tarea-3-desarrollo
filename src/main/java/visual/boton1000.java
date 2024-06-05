@@ -9,9 +9,9 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class boton1000 extends JButton {
-    private PanelMoneda p;
+    private final PanelMoneda p;
 
-    private JLabel valorLabel;
+    private final JLabel valorLabel;
 
     public boton1000(String a, JLabel s, PanelMoneda p, ArrayList<Moneda> monedas) {
         super(a);

@@ -9,13 +9,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class JPanelComprador extends JPanel {
-    private Comprador logicaComprador;
-    private Expendedor logicaExpendedor;
-    private JPanelExpendedor panelExpendedor;
-    private PanelMoneda panelMoneda;
-    private PanelDigitos panelDigitos;
+    private final Comprador logicaComprador;
+    private final Expendedor logicaExpendedor;
+    private final JPanelExpendedor panelExpendedor;
+    private final PanelMoneda panelMoneda;
+    private final PanelDigitos panelDigitos;
 
-    private ArrayList<Moneda> m;
+    private final ArrayList<Moneda> m;
 
     public JPanelComprador(JPanelExpendedor panelExpendedor, Expendedor expendedor) {
         int widthDigitos = 200;

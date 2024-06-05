@@ -6,13 +6,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JPanelPrincipal extends JPanel {
-    private JPanelExpendedor panelExpendedor;
-    private JPanelDepositoUnico panelDepositoUnico;
-    private JPanelPrecios panelPrecios;
-    private JPanelComprador panelComprador;
+    private final JPanelExpendedor panelExpendedor;
+    private final JPanelDepositoUnico panelDepositoUnico;
+    private final JPanelPrecios panelPrecios;
+    private final JPanelComprador panelComprador;
 
     public JPanelPrincipal() {
-        Expendedor expendedor = new Expendedor(6);
+        Expendedor expendedor = new Expendedor(4);
 
         GridBagLayout layout = new GridBagLayout();
         GridBagConstraints gbc = new GridBagConstraints();
@@ -54,8 +54,7 @@ public class JPanelPrincipal extends JPanel {
         this.add(panelPrecios, gbc);
 
 
-        panelComprador = new JPanelComprador(panelExpendedor);
-        panelComprador.setExpendedor(expendedor);
+        panelComprador = new JPanelComprador(panelExpendedor, expendedor);
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 1;

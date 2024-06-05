@@ -8,8 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BotonSacar extends JButton {
-    private Expendedor expendedor;
-    private JPanelDepositoUnico panelDepositoUnico;
+    private final Expendedor expendedor;
+    private final JPanelDepositoUnico panelDepositoUnico;
 
     public BotonSacar(Expendedor expendedor, JPanelDepositoUnico panelDepositoUnico) {
         this.expendedor = expendedor;

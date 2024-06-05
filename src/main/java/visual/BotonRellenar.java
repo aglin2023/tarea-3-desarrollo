@@ -7,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class BotonRellenar extends JButton {
-    private Expendedor expendedor;
-    private JPanelExpendedor panelExpendedor;
+    private final Expendedor expendedor;
+    private final JPanelExpendedor panelExpendedor;
 
     public BotonRellenar(Expendedor expendedor, JPanelExpendedor panelExpendedor) {
         this.expendedor = expendedor;

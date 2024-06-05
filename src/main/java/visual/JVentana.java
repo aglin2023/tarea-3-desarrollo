@@ -3,7 +3,7 @@ package visual;
 import javax.swing.*;
 
 public class JVentana extends JFrame {
-    private JPanelPrincipal panelPrincipal;
+    private final JPanelPrincipal panelPrincipal;
 
     public JVentana() {
         panelPrincipal = new JPanelPrincipal();

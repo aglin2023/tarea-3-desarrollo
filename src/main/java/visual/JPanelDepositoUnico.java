@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class JPanelDepositoUnico extends JPanel {
-    private Expendedor expendedor;
+    private final Expendedor expendedor;
 
     public JPanelDepositoUnico(Expendedor expendedor) {
         this.expendedor = expendedor;

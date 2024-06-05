@@ -17,9 +17,9 @@ public class dibujadorMonedas extends JPanel {
     /**
      * lista de las monedas que se van a dibujar
      */
-    private ArrayList<Moneda> m;
-    private int offsetX;
-    private int offsetY;
+    private final ArrayList<Moneda> m;
+    private final int offsetX;
+    private final int offsetY;
 
     /**
      * constructor de la clase

@@ -7,18 +7,15 @@ import logica.Producto;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class JPanelExpendedor extends JPanel {
     private JLabel expendedorLabel;
-    private Map<String, Point> imagenCords;
-    private ProductList[] productos;
-    private Expendedor expendedor;
-    private JPanelDepositoUnico depositoUnico;
-    private JButton botonRellenar;
-    private JButton botonSacar;
+    private final ProductList[] productos;
+    private final Expendedor expendedor;
+    private final JPanelDepositoUnico depositoUnico;
+    private final JButton botonRellenar;
+    private final JButton botonSacar;
 
 
     public JPanelExpendedor(Expendedor expendedor, JPanelDepositoUnico panelDepositoUnico) {
@@ -26,8 +23,6 @@ public class JPanelExpendedor extends JPanel {
         this.expendedorLabel = new JLabel();
         this.expendedor = expendedor;
         this.depositoUnico = panelDepositoUnico;
-        //this.setPreferredSize(new Dimension(700, 850));
-        imagenCords = new HashMap<>();
         this.productos = new ProductList[]{
                 ProductList.COCA,
                 ProductList.SPRITE,
@@ -54,7 +49,6 @@ public class JPanelExpendedor extends JPanel {
         agregarImagenExpendedor();
         this.add(botonRellenar);
         depositoUnico.add(botonSacar);
-
         this.repaint();
     }
 
@@ -98,9 +92,6 @@ public class JPanelExpendedor extends JPanel {
         label.setBounds(x, y, nuevaIcon.getIconWidth(), nuevaIcon.getIconHeight()); // Establece las coordenadas y tamaño
         add(label); // Agrega el JLabel al JPanel
 
-        // Elimina los últimos 4 caracteres (la extensión del archivo)
-        String nombreSinExtension = imagen.substring(0, imagen.length() - 4);
-        imagenCords.put(nombreSinExtension, new Point(x, y)); // Guarda las coordenadas de la imagen
     }
 
     public ImageIcon nuevoTamañoImagen(ImageIcon icon, int ancho, int alto) {

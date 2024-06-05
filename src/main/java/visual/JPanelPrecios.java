@@ -8,10 +8,10 @@ import java.io.File;
 import java.io.IOException;
 
 public class JPanelPrecios extends JPanel {
-    private JLabel[] nombreProducto;
-    private JLabel[] precioProducto;
-    private JLabel[] idProducto;
-    private ProductList[] productos;
+    private final JLabel[] nombreProducto;
+    private final JLabel[] precioProducto;
+    private final JLabel[] idProducto;
+    private final ProductList[] productos;
 
     public JPanelPrecios() {
         this.setLayout(new GridLayout(5, 3));

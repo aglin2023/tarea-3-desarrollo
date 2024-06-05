@@ -21,14 +21,13 @@ public class PanelMoneda extends JPanel {
     /**
      * etiqueta para mostrar el valor total
      */
-    private JLabel valorLabel;
+    private final JLabel valorLabel;
 
     /**
      * constructor de la clase que crea el panel
      */
     public PanelMoneda(ArrayList<Moneda> m) {
         cajitaMonedas = m;
-        // setSize(100, 100);
         setOpaque(false);
         setLayout(null);
 
@@ -83,7 +82,7 @@ public class PanelMoneda extends JPanel {
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        dibujadorMonedas dibu = new dibujadorMonedas(cajitaMonedas);
+        dibujadorMonedas dibu = new dibujadorMonedas(cajitaMonedas, 80, 250);
         dibu.paintComponent(g);
         int valorTotal = 0;
         for (Moneda m : cajitaMonedas) {

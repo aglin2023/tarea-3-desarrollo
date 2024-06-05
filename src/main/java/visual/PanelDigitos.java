@@ -8,14 +8,14 @@ import java.util.ArrayList;
 
 public class PanelDigitos extends JPanel {
 
-    private int widthSize;
-    private int heightSize;
-    private int margen = 20;
+    private final int widthSize;
+    private final int heightSize;
+    private final int margen = 20;
 
-    private JLabel textLabel;
-    private JPanelComprador panelComprador;
+    private final JLabel textLabel;
+    private final JPanelComprador panelComprador;
     private ArrayList<JButton> botones;
-    private LogicaDigitos logica;
+    private final LogicaDigitos logica;
 
     public PanelDigitos(JPanelComprador pCom, int wS, int hS) {
         setBackground(Color.gray);
